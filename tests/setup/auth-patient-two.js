@@ -1,6 +1,6 @@
 import { test } from "@playwright/test";
 
-test.describe("Patient Authentication Setup @patient", () => {
+test.describe("Patient Authentication Setup @patient2", () => {
   test("setup patient authentication", async ({ browser }) => {
     const context = await browser.newContext();
     const page = await context.newPage();
@@ -9,10 +9,10 @@ test.describe("Patient Authentication Setup @patient", () => {
     await page.goto(baseUrl);
     await page.waitForURL(/.*\/login/);
 
-    // Fill email - use QA_PATIENT_ONE_USERNAME
+    // Fill email - use QA_PATIENT_TWO_USERNAME
     await page
       .getByPlaceholder("Enter email")
-      .fill(process.env.QA_PATIENT_ONE_USERNAME);
+      .fill(process.env.QA_PATIENT_TWO_USERNAME);
     await page.getByRole("button", { name: "Next" }).click();
 
     // Fill password - use QA_PATIENT_PASSWORD
@@ -26,8 +26,10 @@ test.describe("Patient Authentication Setup @patient", () => {
     await page.waitForLoadState("networkidle");
 
     // Save authentication state
-    await context.storageState({ path: "playwright/.auth/patient.json" });
-    console.log(`✅ Patient authentication state saved. (QA Environment)`);
+    await context.storageState({ path: "playwright/.auth/patient-two.json" });
+    console.log(
+      `✅ Patient (Two) authentication state saved. (QA Environment)`,
+    );
 
     await context.close();
   });

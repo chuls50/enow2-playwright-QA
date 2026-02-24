@@ -1,16 +1,25 @@
 {
   "name": "enow2-playwright-qa",
   "version": "1.0.0",
-  "description": "",
+  "description": "Automated end-to-end testing framework for eNow2",
   "main": "index.js",
-  "scripts": {},
-  "keywords": [],
+  "scripts": {
+    "test": "npx playwright test",
+    "test:setup": "npx playwright test --project=auth-admin --project=auth-provider --project=auth-patient --project=auth-coordinator --project=auth-admin-coordinator --project=auth-provider-coordinator --project=auth-provider-admin --project=auth-provider-admin-coordinator --project=auth-device --project=auth-admin-two --project=auth-provider-two --project=auth-patient-two --project=auth-coordinator-two --project=auth-device-two --project=auth-super-admin",
+    "test:smoke": "npx playwright test --project=smoke",
+    "test:single": "npx playwright test --project=single-admin --project=single-admin-coordinator --project=single-coordinator --project=single-device --project=single-patient --project=single-provider --project=single-provider-admin --project=single-provider-admin-coordinator --project=single-provider-coordinator --project=single-super-admin --project=single-unauthenticated",
+    "test:multi": "npx playwright test --project=multi-user-tests",
+    "test:destructive": "npx playwright test --project=destructive",
+    "report": "npx playwright show-report"
+  },
+  "keywords": ["playwright", "testing", "e2e", "automation"],
   "author": "",
   "license": "ISC",
-  "type": "commonjs",
+  "type": "module",
   "devDependencies": {
     "@playwright/test": "^1.58.2",
     "@types/node": "^25.3.0",
+    "allure-playwright": "^3.4.5",
     "dotenv": "^17.3.1"
   }
 }

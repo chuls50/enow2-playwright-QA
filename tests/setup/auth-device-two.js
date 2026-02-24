@@ -1,6 +1,6 @@
 import { test } from "@playwright/test";
 
-test.describe("Device Authentication Setup @device", () => {
+test.describe("Device Authentication Setup @device2", () => {
   test("setup device authentication", async ({ browser }) => {
     const context = await browser.newContext();
     const page = await context.newPage();
@@ -18,10 +18,10 @@ test.describe("Device Authentication Setup @device", () => {
       .getByRole("textbox", { name: "1234" })
       .waitFor({ state: "visible" });
 
-    // Fill device id - use QA_DEVICE_ONE_ID
+    // Fill device id - use QA_DEVICE_TWO_ID
     await page
       .getByRole("textbox", { name: "1234" })
-      .fill(process.env.QA_DEVICE_ONE_ID);
+      .fill(process.env.QA_DEVICE_TWO_ID);
     await page.getByRole("button", { name: "Verify Device ID" }).click();
 
     // Wait for successful device authentication
@@ -29,7 +29,7 @@ test.describe("Device Authentication Setup @device", () => {
     await page.waitForLoadState("networkidle");
 
     // Save authentication state
-    await context.storageState({ path: "playwright/.auth/device.json" });
-    console.log(`✅ Device authentication state saved. (QA Environment)`);
+    await context.storageState({ path: "playwright/.auth/device-two.json" });
+    console.log(`✅ Device (Two) authentication state saved. (QA Environment)`);
   });
 });
