@@ -10,9 +10,18 @@
     "test:single": "npx playwright test --project=single-admin --project=single-admin-coordinator --project=single-coordinator --project=single-device --project=single-patient --project=single-provider --project=single-provider-admin --project=single-provider-admin-coordinator --project=single-provider-coordinator --project=single-super-admin --project=single-unauthenticated",
     "test:multi": "npx playwright test --project=multi-user-tests",
     "test:destructive": "npx playwright test --project=destructive",
-    "report": "npx playwright show-report"
+    "report": "npx playwright show-report",
+    "format": "npx prettier --write \"tests/**/*.js\" \"playwright.config.js\"",
+    "format:check": "npx prettier --check \"tests/**/*.js\" \"playwright.config.js\"",
+    "lint": "npx eslint \"tests/**/*.js\" \"playwright.config.js\"",
+    "lint:fix": "npx eslint --fix \"tests/**/*.js\" \"playwright.config.js\""
   },
-  "keywords": ["playwright", "testing", "e2e", "automation"],
+  "keywords": [
+    "playwright",
+    "testing",
+    "e2e",
+    "automation"
+  ],
   "author": "",
   "license": "ISC",
   "type": "module",
@@ -20,6 +29,8 @@
     "@playwright/test": "^1.58.2",
     "@types/node": "^25.3.0",
     "allure-playwright": "^3.4.5",
-    "dotenv": "^17.3.1"
+    "dotenv": "^17.3.1",
+    "eslint": "^8.57.1",
+    "prettier": "^3.8.1"
   }
 }

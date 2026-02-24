@@ -1,0 +1,14 @@
+# Dependencies
+node_modules/
+
+# Test outputs
+playwright-report/
+test-results/
+allure-results/
+
+# Build outputs
+dist/
+build/
+
+# Config files
+playwright.config.js

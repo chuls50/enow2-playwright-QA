@@ -14,14 +14,10 @@ test.describe("Device Authentication Setup @device", () => {
     await page.goto(`${currentURL}/device`);
 
     // wait for getByRole('textbox', { name: '1234' }) to be visible
-    await page
-      .getByRole("textbox", { name: "1234" })
-      .waitFor({ state: "visible" });
+    await page.getByRole("textbox", { name: "1234" }).waitFor({ state: "visible" });
 
     // Fill device id - use QA_DEVICE_ONE_ID
-    await page
-      .getByRole("textbox", { name: "1234" })
-      .fill(process.env.QA_DEVICE_ONE_ID);
+    await page.getByRole("textbox", { name: "1234" }).fill(process.env.QA_DEVICE_ONE_ID);
     await page.getByRole("button", { name: "Verify Device ID" }).click();
 
     // Wait for successful device authentication
@@ -30,6 +26,6 @@ test.describe("Device Authentication Setup @device", () => {
 
     // Save authentication state
     await context.storageState({ path: "playwright/.auth/device.json" });
-    console.log(`✅ Device authentication state saved. (QA Environment)`);
+    console.log("✅ Device authentication state saved. (QA Environment)");
   });
 });

@@ -10,15 +10,11 @@ test.describe("Provider Authentication Setup @provider", () => {
     await page.waitForURL(/.*\/login/);
 
     // Fill email - use QA_PROVIDER_ONE_USERNAME
-    await page
-      .getByPlaceholder("Enter email")
-      .fill(process.env.QA_PROVIDER_ONE_USERNAME);
+    await page.getByPlaceholder("Enter email").fill(process.env.QA_PROVIDER_ONE_USERNAME);
     await page.getByRole("button", { name: "Next" }).click();
 
     // Fill password - use QA_PROVIDER_PASSWORD
-    await page
-      .getByPlaceholder("Enter your password")
-      .fill(process.env.QA_PROVIDER_PASSWORD);
+    await page.getByPlaceholder("Enter your password").fill(process.env.QA_PROVIDER_PASSWORD);
     await page.getByRole("button", { name: "Log In" }).click();
 
     // Wait for successful login
@@ -27,7 +23,7 @@ test.describe("Provider Authentication Setup @provider", () => {
 
     // Save authentication state
     await context.storageState({ path: "playwright/.auth/provider.json" });
-    console.log(`✅ Provider authentication state saved. (QA Environment)`);
+    console.log("✅ Provider authentication state saved. (QA Environment)");
 
     await context.close();
   });

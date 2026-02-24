@@ -10,15 +10,11 @@ test.describe("Coordinator Authentication Setup @coordinator2", () => {
     await page.waitForURL(/.*\/login/);
 
     // Fill email - use QA_COORDINATOR_TWO_USERNAME
-    await page
-      .getByPlaceholder("Enter email")
-      .fill(process.env.QA_COORDINATOR_TWO_USERNAME);
+    await page.getByPlaceholder("Enter email").fill(process.env.QA_COORDINATOR_TWO_USERNAME);
     await page.getByRole("button", { name: "Next" }).click();
 
     // Fill password - use QA_COORDINATOR_PASSWORD
-    await page
-      .getByPlaceholder("Enter your password")
-      .fill(process.env.QA_COORDINATOR_PASSWORD);
+    await page.getByPlaceholder("Enter your password").fill(process.env.QA_COORDINATOR_PASSWORD);
     await page.getByRole("button", { name: "Log In" }).click();
 
     // Wait for successful login
@@ -29,9 +25,7 @@ test.describe("Coordinator Authentication Setup @coordinator2", () => {
     await context.storageState({
       path: "playwright/.auth/coordinator-two.json",
     });
-    console.log(
-      `✅ Coordinator (Two) authentication state saved. (QA Environment)`,
-    );
+    console.log("✅ Coordinator (Two) authentication state saved. (QA Environment)");
 
     await context.close();
   });

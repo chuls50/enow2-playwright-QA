@@ -40,9 +40,7 @@ test.describe("Authentication Setup Verification", () => {
     }
 
     if (missingFiles.length > 0) {
-      throw new Error(
-        `Missing authentication files: ${missingFiles.join(", ")}`,
-      );
+      throw new Error(`Missing authentication files: ${missingFiles.join(", ")}`);
     }
 
     console.log("✅ All authentication files verified:", authFiles.join(", "));
@@ -91,7 +89,7 @@ test.describe("Authentication Setup Verification", () => {
       }
 
       const context = await browser.newContext(config);
-      const page = await context.newPage();
+      const _page = await context.newPage();
 
       // Basic check that the storage state is valid
       // (This doesn't test login functionality, just that the file loads)

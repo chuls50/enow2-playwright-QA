@@ -101,30 +101,33 @@ tests/
 ## Test Categories
 
 ### Single-User Tests
+
 Tests that can be run with a single authenticated user. Each role folder runs with 1 worker to avoid interference, but multiple roles can run in parallel (up to 5 simultaneously).
 
 ### Multi-User Tests
+
 Tests requiring multiple users interacting simultaneously (e.g., video calls). Uses secondary credentials (`*-two`) and runs sequentially with 1 worker.
 
 ### Destructive Tests
+
 Tests that modify global application configuration. Run last, sequentially, to prevent interference with other tests.
 
 ## Authentication
 
 Storage states are saved to `playwright/.auth/{role}.json`:
 
-| Role | Primary Account | Secondary Account |
-|------|-----------------|-------------------|
-| Admin | `admin.json` | `admin-two.json` |
-| Provider | `provider.json` | `provider-two.json` |
-| Patient | `patient.json` | `patient-two.json` |
-| Coordinator | `coordinator.json` | `coordinator-two.json` |
-| Device | `device.json` | `device-two.json` |
-| Admin-Coordinator | `admin-coordinator.json` | - |
-| Provider-Admin | `provider-admin.json` | - |
-| Provider-Coordinator | `provider-coordinator.json` | - |
-| Provider-Admin-Coordinator | `provider-admin-coordinator.json` | - |
-| Super Admin | `super-admin.json` | - |
+| Role                       | Primary Account                   | Secondary Account      |
+| -------------------------- | --------------------------------- | ---------------------- |
+| Admin                      | `admin.json`                      | `admin-two.json`       |
+| Provider                   | `provider.json`                   | `provider-two.json`    |
+| Patient                    | `patient.json`                    | `patient-two.json`     |
+| Coordinator                | `coordinator.json`                | `coordinator-two.json` |
+| Device                     | `device.json`                     | `device-two.json`      |
+| Admin-Coordinator          | `admin-coordinator.json`          | -                      |
+| Provider-Admin             | `provider-admin.json`             | -                      |
+| Provider-Coordinator       | `provider-coordinator.json`       | -                      |
+| Provider-Admin-Coordinator | `provider-admin-coordinator.json` | -                      |
+| Super Admin                | `super-admin.json`                | -                      |
 
 ## Reports
 
@@ -132,6 +135,44 @@ Storage states are saved to `playwright/.auth/{role}.json`:
 - **Allure Report**: `allure-results/` (generate with `npx allure generate`)
 - **JUnit XML**: `test-results/results.xml`
 - **JSON**: `test-results/results.json`
+
+## Code Formatting Standards
+
+This project uses Prettier and ESLint to maintain consistent code quality.
+
+### Configuration
+
+- **Prettier**: 140-character line width, double quotes, semicolons required
+- **ESLint**: ES2021+ standards, warns on unused variables
+- **Auto-format on save**: Enabled in VS Code (see `.vscode/settings.json`)
+
+### Commands
+
+```bash
+# Format all test files
+npm run format
+
+# Check formatting without making changes
+npm run format:check
+
+# Run ESLint
+npm run lint
+
+# Auto-fix ESLint issues
+npm run lint:fix
+```
+
+### Manual Formatting
+
+- **VS Code**: Press `Shift + Alt + F` to format current file
+- **On Save**: Files auto-format when saved (if VS Code Prettier extension installed)
+
+### Best Practices
+
+- Remove unused parameters from skipped tests
+- Prefix unused parameters with underscore (`_page`) if needed for future use
+- Run `npm run format` before committing changes
+- ESLint warnings won't block tests but should be addressed
 
 ## Configuration
 

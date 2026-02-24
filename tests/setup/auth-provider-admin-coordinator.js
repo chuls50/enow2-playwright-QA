@@ -1,9 +1,7 @@
 import { test } from "@playwright/test";
 
 test.describe("Provider+Admin+Coordinator Authentication Setup @provider-admin-coordinator", () => {
-  test("setup provider+admin+coordinator authentication", async ({
-    browser,
-  }) => {
+  test("setup provider+admin+coordinator authentication", async ({ browser }) => {
     const context = await browser.newContext();
     const page = await context.newPage();
 
@@ -12,15 +10,11 @@ test.describe("Provider+Admin+Coordinator Authentication Setup @provider-admin-c
     await page.waitForURL(/.*\/login/);
 
     // Fill email - use QA_PROVIDERADMINCOORDINATOR_USERNAME
-    await page
-      .getByPlaceholder("Enter email")
-      .fill(process.env.QA_PROVIDERADMINCOORDINATOR_USERNAME);
+    await page.getByPlaceholder("Enter email").fill(process.env.QA_PROVIDERADMINCOORDINATOR_USERNAME);
     await page.getByRole("button", { name: "Next" }).click();
 
     // Fill password - use QA_PROVIDERADMINCOORDINATOR_PASSWORD
-    await page
-      .getByPlaceholder("Enter your password")
-      .fill(process.env.QA_PROVIDERADMINCOORDINATOR_PASSWORD);
+    await page.getByPlaceholder("Enter your password").fill(process.env.QA_PROVIDERADMINCOORDINATOR_PASSWORD);
     await page.getByRole("button", { name: "Log In" }).click();
 
     // Wait for successful login
@@ -31,9 +25,7 @@ test.describe("Provider+Admin+Coordinator Authentication Setup @provider-admin-c
     await context.storageState({
       path: "playwright/.auth/provider-admin-coordinator.json",
     });
-    console.log(
-      `✅ Provider+Admin+Coordinator authentication state saved. (QA Environment)`,
-    );
+    console.log("✅ Provider+Admin+Coordinator authentication state saved. (QA Environment)");
 
     await context.close();
   });

@@ -10,15 +10,11 @@ test.describe("Admin Authentication Setup @admin", () => {
     await page.waitForURL(/.*\/login/);
 
     // Fill email - use QA_ADMIN_ONE_USERNAME
-    await page
-      .getByPlaceholder("Enter email")
-      .fill(process.env.QA_ADMIN_ONE_USERNAME);
+    await page.getByPlaceholder("Enter email").fill(process.env.QA_ADMIN_ONE_USERNAME);
     await page.getByRole("button", { name: "Next" }).click();
 
     // Fill password - use QA_ADMIN_PASSWORD
-    await page
-      .getByPlaceholder("Enter your password")
-      .fill(process.env.QA_ADMIN_PASSWORD);
+    await page.getByPlaceholder("Enter your password").fill(process.env.QA_ADMIN_PASSWORD);
     await page.getByRole("button", { name: "Log In" }).click();
 
     // Wait for successful login
@@ -27,7 +23,7 @@ test.describe("Admin Authentication Setup @admin", () => {
 
     // Save authentication state
     await context.storageState({ path: "playwright/.auth/admin.json" });
-    console.log(`✅ Admin authentication state saved. (QA Environment)`);
+    console.log("✅ Admin authentication state saved. (QA Environment)");
 
     await context.close();
   });

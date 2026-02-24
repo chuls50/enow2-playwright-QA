@@ -10,15 +10,11 @@ test.describe("Patient Authentication Setup @patient", () => {
     await page.waitForURL(/.*\/login/);
 
     // Fill email - use QA_PATIENT_ONE_USERNAME
-    await page
-      .getByPlaceholder("Enter email")
-      .fill(process.env.QA_PATIENT_ONE_USERNAME);
+    await page.getByPlaceholder("Enter email").fill(process.env.QA_PATIENT_ONE_USERNAME);
     await page.getByRole("button", { name: "Next" }).click();
 
     // Fill password - use QA_PATIENT_PASSWORD
-    await page
-      .getByPlaceholder("Enter your password")
-      .fill(process.env.QA_PATIENT_PASSWORD);
+    await page.getByPlaceholder("Enter your password").fill(process.env.QA_PATIENT_PASSWORD);
     await page.getByRole("button", { name: "Log In" }).click();
 
     // Wait for successful login
@@ -27,7 +23,7 @@ test.describe("Patient Authentication Setup @patient", () => {
 
     // Save authentication state
     await context.storageState({ path: "playwright/.auth/patient.json" });
-    console.log(`✅ Patient authentication state saved. (QA Environment)`);
+    console.log("✅ Patient authentication state saved. (QA Environment)");
 
     await context.close();
   });

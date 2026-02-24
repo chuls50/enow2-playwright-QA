@@ -10,15 +10,11 @@ test.describe("Super Admin Authentication Setup @super-admin", () => {
     await page.waitForURL(/.*\/login/);
 
     // Fill email - use QA_SUPERADMIN_USERNAME
-    await page
-      .getByPlaceholder("Enter email")
-      .fill(process.env.QA_SUPERADMIN_USERNAME);
+    await page.getByPlaceholder("Enter email").fill(process.env.QA_SUPERADMIN_USERNAME);
     await page.getByRole("button", { name: "Next" }).click();
 
     // Fill password - use QA_SUPERADMIN_PASSWORD
-    await page
-      .getByPlaceholder("Enter your password")
-      .fill(process.env.QA_SUPERADMIN_PASSWORD);
+    await page.getByPlaceholder("Enter your password").fill(process.env.QA_SUPERADMIN_PASSWORD);
     await page.getByRole("button", { name: "Log In" }).click();
 
     // Wait for successful login
@@ -27,7 +23,7 @@ test.describe("Super Admin Authentication Setup @super-admin", () => {
 
     // Save authentication state
     await context.storageState({ path: "playwright/.auth/super-admin.json" });
-    console.log(`✅ Super Admin authentication state saved. (QA Environment)`);
+    console.log("✅ Super Admin authentication state saved. (QA Environment)");
 
     await context.close();
   });

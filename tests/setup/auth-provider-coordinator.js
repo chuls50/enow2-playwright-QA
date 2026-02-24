@@ -10,15 +10,11 @@ test.describe("Provider+Coordinator Authentication Setup @provider-coordinator",
     await page.waitForURL(/.*\/login/);
 
     // Fill email - use QA_PROVIDERCOORDINATOR_USERNAME
-    await page
-      .getByPlaceholder("Enter email")
-      .fill(process.env.QA_PROVIDERCOORDINATOR_USERNAME);
+    await page.getByPlaceholder("Enter email").fill(process.env.QA_PROVIDERCOORDINATOR_USERNAME);
     await page.getByRole("button", { name: "Next" }).click();
 
     // Fill password - use QA_PROVIDERCOORDINATOR_PASSWORD
-    await page
-      .getByPlaceholder("Enter your password")
-      .fill(process.env.QA_PROVIDERCOORDINATOR_PASSWORD);
+    await page.getByPlaceholder("Enter your password").fill(process.env.QA_PROVIDERCOORDINATOR_PASSWORD);
     await page.getByRole("button", { name: "Log In" }).click();
 
     // Wait for successful login
@@ -29,9 +25,7 @@ test.describe("Provider+Coordinator Authentication Setup @provider-coordinator",
     await context.storageState({
       path: "playwright/.auth/provider-coordinator.json",
     });
-    console.log(
-      `✅ Provider+Coordinator authentication state saved. (QA Environment)`,
-    );
+    console.log("✅ Provider+Coordinator authentication state saved. (QA Environment)");
 
     await context.close();
   });
