@@ -83,7 +83,7 @@ export class MyAccountPage extends BasePage {
 
   // Navigation method
   async navigateToAccountSettings() {
-    await this.page.goto(`${process.env.UAT_URL}/account-settings/my-account`);
+    await this.page.goto(`${process.env.QA_URL}/account-settings/my-account`);
     await this.waitForSpinnerToDisappear();
     await this.header.waitFor({ state: "visible" });
   }

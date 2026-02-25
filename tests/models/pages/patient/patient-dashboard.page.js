@@ -62,7 +62,7 @@ export class PatientDashboardPage extends BasePage {
   }
 
   async navigateToPatientDashboard() {
-    await this.page.goto(`${process.env.UAT_URL}/dashboard`);
+    await this.page.goto(`${process.env.QA_URL}/dashboard`);
     await this.waitForSpinnerToDisappear();
     await this.upcomingAppointmentsHeading.waitFor({ state: "visible" });
   }

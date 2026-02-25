@@ -105,7 +105,7 @@ export class UsersTablePage extends BasePage {
   }
 
   async navigateToUsersTable() {
-    await this.page.goto(`${process.env.UAT_URL}/users-table`);
+    await this.page.goto(`${process.env.QA_URL}/users-table`);
 
     // Wait for spinner to disappear if present
     await this.waitForSpinnerToDisappear();

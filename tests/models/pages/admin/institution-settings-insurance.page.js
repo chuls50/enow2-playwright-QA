@@ -85,7 +85,7 @@ export class InstitutionSettingsInsurancePage extends BasePage {
   }
 
   async navigateToInsuranceSettings() {
-    await this.page.goto(`${process.env.UAT_URL}/institution-settings`);
+    await this.page.goto(`${process.env.QA_URL}/institution-settings`);
 
     // Wait for spinner to disappear if present
     await this.waitForSpinnerToDisappear();

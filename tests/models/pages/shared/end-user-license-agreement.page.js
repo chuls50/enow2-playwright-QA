@@ -29,7 +29,7 @@ export class EndUserLicenseAgreementPage extends BasePage {
   // ========================================
 
   async navigateToEula() {
-    await this.page.goto("https://portal.qa-encounterservices.com/first-login");
+    await this.page.goto(`${process.env.QA_URL}/first-login`);
     await this.page.waitForLoadState("networkidle");
   }
 

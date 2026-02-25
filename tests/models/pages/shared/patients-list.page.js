@@ -194,7 +194,7 @@ export class PatientListPage extends BasePage {
   // Multi-step action methods for patient list
   // Navigation and interaction methods
   async navigateToPatientsList() {
-    await this.goto(`${process.env.UAT_URL}/patients`);
+    await this.goto(`${process.env.QA_URL}/patients`);
   }
 
   async clickFirstAvailablePatient() {

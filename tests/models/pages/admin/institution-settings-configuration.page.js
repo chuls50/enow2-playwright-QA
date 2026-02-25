@@ -67,7 +67,7 @@ export class InstitutionSettingsConfigurationPage extends BasePage {
 
   // Navigation Methods
   async navigateToInstitutionSettingsConfiguration() {
-    await this.page.goto(`${process.env.UAT_URL}/institution-settings`);
+    await this.page.goto(`${process.env.QA_URL}/institution-settings`);
 
     // Wait for spinner to disappear if present
     await this.waitForSpinnerToDisappear();

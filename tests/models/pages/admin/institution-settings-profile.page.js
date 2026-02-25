@@ -122,7 +122,7 @@ export class InstitutionSettingsProfilePage extends BasePage {
   // NAVIGATION METHODS
   // ========================================
   async navigateToInstitutionSettingsProfile() {
-    await this.page.goto(`${process.env.UAT_URL}/institution-settings`);
+    await this.page.goto(`${process.env.QA_URL}/institution-settings`);
     await this.waitForSpinnerToDisappear();
     await this.page.waitForLoadState("networkidle");
     await this.institutionSettingsHeading.waitFor({ state: "visible" });

@@ -148,7 +148,7 @@ export class LoginPage extends BasePage {
 
   // Device ID Authentication Methods
   async gotoDeviceIdPage(baseURL = process.env.QA_URL) {
-    await this.page.goto(`${baseURL}/device`, { waitUntil: "networkidle" });
+    await this.page.goto(`${baseURL}/login/device`, { waitUntil: "networkidle" });
   }
 
   async fillDeviceId(deviceId) {

@@ -25,7 +25,7 @@ export class CoordinatorDashboardPage extends BasePage {
 
   // Navigation Methods
   async navigateToCoordinatorDashboard() {
-    await this.page.goto(`${process.env.UAT_URL}/dashboard`);
+    await this.page.goto(`${process.env.QA_URL}/dashboard`);
     await this.waitForSpinnerToDisappear();
     await this.scheduleSession.waitFor({ state: "visible" });
   }

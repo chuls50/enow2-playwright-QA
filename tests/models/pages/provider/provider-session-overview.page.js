@@ -167,7 +167,7 @@ export class ProviderSessionOverviewPage extends BasePage {
 
   // Navigation Methods
   async navigateToProviderDashboard() {
-    await this.page.goto(`${process.env.UAT_URL}/dashboard`);
+    await this.page.goto(`${process.env.QA_URL}/dashboard`);
     await this.waitForSpinnerToDisappear();
     await this.scheduleVisitButton.waitFor({ state: "visible" });
   }

@@ -15,7 +15,7 @@ export class MyAccountPage extends BasePage {
     this.myAccountText = page.getByText("Update and manage your account");
     this.profileIcon = page.getByTestId("avatar").locator("div").nth(1);
     this.profileName = page.getByText("cody prov").first();
-    this.profileEmail = page.getByText("chuls+prov1codytest@globalmed.com");
+    this.profileEmail = page.getByText("chuls");
     this.uploadPhotoButton = page.getByRole("button", { name: "Download Upload photo" });
     this.deletePhotoButton = page.getByRole("button", { name: "Trash Delete photo" });
 
@@ -136,8 +136,7 @@ export class MyAccountPage extends BasePage {
   }
 
   async navigateToProviderMyAccount() {
-    await this.page.goto(`${process.env.UAT_URL}/account-settings/my-account`);
-
+    await this.page.goto(`${process.env.QA_URL}/account-settings/my-account`);
     await this.waitForSpinnerToDisappear();
     await this.header.waitFor({ state: "visible" });
   }

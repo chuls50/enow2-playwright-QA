@@ -72,7 +72,7 @@ export class PatientSessionDetailsPage extends BasePage {
   // NAVIGATION METHODS
   // ========================================
   async navigateToSessionDetails(sessionId) {
-    await this.page.goto(`${process.env.UAT_URL}/session-details/${sessionId}`);
+    await this.page.goto(`${process.env.QA_URL}/session-details/${sessionId}`);
     await this.waitForSpinnerToDisappear();
     await this.sessionDetailsHeading.waitFor({ state: "visible" });
   }

@@ -61,7 +61,7 @@ export class BeforeWeGetStartedPage extends BasePage {
   // ========================================
 
   async navigateToOnboarding() {
-    await this.page.goto("https://portal.qa-encounterservices.com/first-login/participant-form");
+    await this.page.goto(`${process.env.QA_URL}/first-login/participant-form`);
     await this.page.waitForLoadState("networkidle");
     await this.pageTitle.waitFor({ state: "visible" });
   }

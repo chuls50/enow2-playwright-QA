@@ -5,7 +5,7 @@ export class NotificationsPage extends BasePage {
     super(page);
 
     // Test data for provider user
-    this.displayedEmail = page.getByText("chuls+prov1codytest@globalmed.com");
+    this.displayedEmail = page.getByText("chuls");
 
     // Main page elements
     this.title = page.locator("div").filter({ hasText: /^Account settings$/ });
@@ -56,12 +56,8 @@ export class NotificationsPage extends BasePage {
   }
 
   async navigateToNotificationsPage() {
-    await this.page.goto(`${process.env.UAT_URL}/account-settings/notifications`);
-
-    // Wait for spinner to disappear if present
+    await this.page.goto(`${process.env.QA_URL}/account-settings/notifications`);
     await this.waitForSpinnerToDisappear();
-
-    // Wait for Notifications page to load
     await this.header.waitFor({ state: "visible" });
   }
 

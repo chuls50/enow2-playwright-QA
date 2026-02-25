@@ -80,7 +80,7 @@ export class CalendarSettingsPage extends BasePage {
 
   // Navigation methods
   async navigateToCalendarSettingsPage() {
-    await this.page.goto(`${process.env.UAT_URL}/account-settings/calendar`);
+    await this.page.goto(`${process.env.QA_URL}/account-settings/calendar`);
     await this.waitForSpinnerToDisappear();
     await this.accountSettingsHeader.waitFor({ state: "visible" });
   }

@@ -113,7 +113,7 @@ export class MyAccountPage extends BasePage {
   }
 
   async navigateToMyAccount() {
-    await this.page.goto(`${process.env.UAT_URL}/account-settings/my-account`);
+    await this.page.goto(`${process.env.QA_URL}/account-settings/my-account`);
     await this.waitForSpinnerToDisappear();
     await this.myAccountLabel.waitFor({ state: "visible" });
   }
