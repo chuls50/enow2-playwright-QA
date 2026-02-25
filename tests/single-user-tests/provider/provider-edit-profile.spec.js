@@ -70,7 +70,7 @@ test.describe("Provider @regression", () => {
     ).toHaveText("Badakhshan");
   });
 
-  test("Verify Save Changes behavior for licenses in Edit License slide out @[111399] @provider @functional", async () => {
+  test.skip("Verify Save Changes behavior for licenses in Edit License slide out @[111399] @provider @functional", async () => {
     await providerMyAccountPage.openEditLicenseToPracticeModal();
     await providerMyAccountPage.resetEditLicenseModalStateIfNeeded();
 

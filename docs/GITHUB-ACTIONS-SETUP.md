@@ -44,13 +44,14 @@ To run tests in CI, you need to configure the following secrets in your GitHub r
 | `QA_PATIENT_TWO_USERNAME`              | Secondary patient email             | `patient2@example.com`           |
 | `QA_PATIENT_PASSWORD`                  | Patient password                    | `SecurePassword123`              |
 | **Coordinator Credentials**            |
+| `QA_COORDINATOR_ONE_USERNAME`          | Primary coordinator email           | `coordinator1@example.com`       |
 | `QA_COORDINATOR_TWO_USERNAME`          | Secondary coordinator email         | `coordinator2@example.com`       |
 | `QA_COORDINATOR_PASSWORD`              | Coordinator password                | `SecurePassword123`              |
-| **Device IDs**                         |                                    |                                  |
+| **Device IDs**                         |                                     |                                  |
 | `QA_DEVICE_ONE_ID`                     | Primary device unique identifier    | `DEVICE-001-TEST`                |
 | `QA_DEVICE_TWO_ID`                     | Secondary device unique identifier  | `DEVICE-002-TEST`                |
 | `QA_DEVICE_THREE_ID`                   | Tertiary device unique identifier   | `DEVICE-003-TEST`                |
-| **Combined Role Credentials**          |                                    |                                  |
+| **Combined Role Credentials**          |                                     |                                  |
 | `QA_ADMINCOORDINATOR_USERNAME`         | Admin-Coordinator email             | `admincoord@example.com`         |
 | `QA_ADMINCOORDINATOR_PASSWORD`         | Admin-Coordinator password          | `SecurePassword123`              |
 | `QA_PROVIDERADMIN_USERNAME`            | Provider-Admin email                | `provideradmin@example.com`      |
