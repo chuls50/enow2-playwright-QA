@@ -153,7 +153,31 @@ npm run test:destructive  # Destructive tests only
 
 # View test report
 npm run report
+
+# Code formatting and linting
+npm run format            # Format all test files
+npm run format:check      # Check formatting without making changes
+npm run lint              # Run ESLint
+npm run lint:fix          # Auto-fix ESLint issues
 ```
+
+## CI/CD with GitHub Actions
+
+This project includes a GitHub Actions workflow that runs the full regression suite automatically on every push and pull request.
+
+**📖 See [GitHub Actions Setup Guide](docs/GITHUB-ACTIONS-SETUP.md)** for:
+
+- Required GitHub Secrets configuration
+- Workflow triggers and features
+- How to view test results and artifacts
+- Troubleshooting CI/CD issues
+
+The workflow:
+
+- ✅ Runs complete regression suite (all 4 phases)
+- ✅ Uploads test reports, results, and Allure data as artifacts
+- ✅ Configurable via GitHub Secrets (credentials never in code)
+- ✅ Can be triggered manually for on-demand testing
 
 ## Project Structure
 
@@ -270,12 +294,27 @@ See [playwright.config.js](playwright.config.js) for full configuration details.
 
 ### Environment Variables
 
-Create a `.env` file with required credentials:
+**Local Development:**
 
-```env
-ADMIN_EMAIL=
-ADMIN_PASSWORD=
-PROVIDER_EMAIL=
-PROVIDER_PASSWORD=
-# ... etc
-```
+1. Copy `.env.example` to `.env`:
+
+   ```bash
+   cp .env.example .env
+   ```
+
+2. Fill in your actual credentials in `.env`:
+
+   ```env
+   QA_URL=https://your-qa-environment.com
+   QA_ADMIN_ONE_USERNAME=admin1@example.com
+   QA_ADMIN_PASSWORD=your_password
+   # ... etc (see .env.example for complete list)
+   ```
+
+3. The `.env` file is gitignored and will never be committed
+
+**CI/CD (GitHub Actions):**
+
+Configure secrets in GitHub repository settings. See [GitHub Actions Setup Guide](docs/GITHUB-ACTIONS-SETUP.md) for detailed instructions.
+
+All required environment variables are documented in [.env.example](.env.example).
