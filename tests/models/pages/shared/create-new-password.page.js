@@ -63,7 +63,7 @@ export class CreateNewPasswordPage extends BasePage {
     this.footer = this.page.getByText("© 2002 - 2026 GlobalMed");
   }
 
-  async navigateToChangePassword(resetLink = process.env.QA_CHANGE_PASSWORD_LINK) {
+  async navigateToChangePassword(resetLink = "https://api.qa-encounterservices.com/redirect/tSazmTkTBPmCVHBlTguemWJGWHnQIolI") {
     if (!resetLink) {
       throw new Error("Password reset link is required. Set QA_CHANGE_PASSWORD_LINK in .env or pass as parameter.");
     }

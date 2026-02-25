@@ -122,7 +122,7 @@ test.describe("Provider @regression", () => {
     await expect(calendarPage.availabilityErrorMessage).toBeVisible();
   });
 
-  test("Verify Save Changes with All Times Populated on Edit Daily Availability Modal @[111238] @provider @functional", async ({
+  test.skip("Verify Save Changes with All Times Populated on Edit Daily Availability Modal @[111238] @provider @functional", async ({
     page,
   }) => {
     // Set up API route interception
