@@ -70,8 +70,8 @@ Use **camelCase** with a **type suffix** describing the element.
 Locators inside a modal use `modal*` prefix + type suffix:
 
 ```javascript
-this.modalNameLabel = page.getByRole('dialog').getByText('Name');
-this.modalZipCodeLabel = page.getByRole('dialog').getByText('Zip code');
+this.modalNameLabel = page.getByRole("dialog").getByText("Name");
+this.modalZipCodeLabel = page.getByRole("dialog").getByText("Zip code");
 ```
 
 ---
@@ -104,7 +104,7 @@ this.modalZipCodeLabel = page.getByRole('dialog').getByText('Zip code');
 ```javascript
 // ✅ Keep inline - dynamic test data, no clear name
 await expect(page.getByText(`${TEST_DATA.DEVICE_NAME} (you)`)).toBeVisible();
-await expect(page.getByText('cody test patient Cody Test Institution')).toBeVisible();
+await expect(page.getByText("cody test patient Cody Test Institution")).toBeVisible();
 
 // ✅ Keep inline - error message with filename
 await expect(page.getByText('The file "30mb.jpg" exceeds')).toBeVisible();
@@ -114,9 +114,9 @@ await expect(page.getByText('The file "30mb.jpg" exceeds')).toBeVisible();
 
 ```javascript
 // ✅ Add to POM - clear semantic name, reusable
-this.deviceIdBadgeText = page.getByText('Device ID');
-this.sessionCanceledToast = page.getByText('Session request canceled');
-this.participantsText = page.getByText('Participants');
+this.deviceIdBadgeText = page.getByText("Device ID");
+this.sessionCanceledToast = page.getByText("Session request canceled");
+this.participantsText = page.getByText("Participants");
 ```
 
 ---

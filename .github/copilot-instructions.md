@@ -116,6 +116,43 @@ test.describe("Video Call Between Users", () => {
 - Multi-user tests depend on smoke
 - Destructive tests depend on all single-user and multi-user projects
 
+## Documentation
+
+### Role-Based User Manual
+
+Comprehensive documentation is available in `docs/roles/`:
+
+- **[Project Wiki](../docs/roles/project-wiki.md)** - Main documentation hub and role overview
+- **[Admin Role Guide](../docs/roles/admin-role.md)** - Admin role features and workflows
+- **[Provider Role Guide](../docs/roles/provider-role.md)** - Provider role features including unique Calendar tab
+- **[Patient Role Guide](../docs/roles/patient-role.md)** - Patient role features with unique profile fields
+- **[Coordinator Role Guide](../docs/roles/coordinator-role.md)** - Coordinator role including Command Center
+- **[Device Role Guide](../docs/roles/device-role.md)** - Device role with kiosk/shared device setup
+
+### Key Role Differences
+
+**Account Settings Tabs:**
+
+- **Provider**: 3 tabs (My Account, **Calendar**, Notifications) - Calendar is Provider-only
+- **Admin, Patient, Coordinator, Device**: 2 tabs (My Account, Notifications)
+
+**Unique Features:**
+
+- **Provider**: Calendar tab with daily availability and integrations
+- **Patient**: Unique profile fields (DOB, Sex, Tax ID, Insurance)
+- **Coordinator**: Command Center for real-time session monitoring (exclusive)
+- **Device**: Device ID authentication, minimal interface (Dashboard only)
+
+**Navigation Differences:**
+
+- **Admin**: Users, Institution Settings, Document Management, Visit Notes, Data Reporting
+- **Provider**: Dashboard, Past Sessions, Providers, My Patients
+- **Patient**: Dashboard, Past Visits, Health Profile, Vitals Scan
+- **Coordinator**: Dashboard, Past Sessions, Providers, Patients, **Command Center**
+- **Device**: Dashboard only (most restricted)
+
+Refer to role-specific documentation when writing tests to understand available features and navigation elements.
+
 ## Common Patterns
 
 ### Auth Helper Usage

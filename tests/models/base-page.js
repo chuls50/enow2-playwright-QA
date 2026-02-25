@@ -24,51 +24,51 @@ export class BasePage {
     }
   }
 
-  // async performDeviceIdLogin(deviceId) {
-  //   try {
-  //     // Navigate to device ID access page
-  //     await this.page.goto('https://api.encounterservices.com/redirect/kPEWFgwUQPqVxLkXxNryXyGEDyeAYEZR');
-  //     await this.page.waitForLoadState('networkidle');
+  async performDeviceIdLogin(deviceId) {
+    try {
+      // Navigate to device ID access page
+      await this.page.goto("https://portal.qa-encounterservices.com/login/device");
+      await this.page.waitForLoadState("networkidle");
 
-  //     // Enter device ID
-  //     await this.page.getByRole('textbox', { name: '1234' }).click();
-  //     await this.page.getByRole('textbox', { name: '1234' }).fill(deviceId);
-  //     await this.page.getByRole('button', { name: 'Verify Device ID' }).click();
+      // Enter device ID
+      await this.page.getByRole("textbox", { name: "1234" }).click();
+      await this.page.getByRole("textbox", { name: "1234" }).fill(deviceId);
+      await this.page.getByRole("button", { name: "Verify Device ID" }).click();
 
-  //     // Wait for successful verification
-  //     await this.page.getByText('Welcome back!').waitFor({ state: 'visible' });
-  //     await this.page.waitForTimeout(2000);
-  //     await this.page.waitForLoadState('networkidle');
+      // Wait for successful verification
+      await this.page.getByText("Welcome back!").waitFor({ state: "visible" });
+      await this.page.waitForTimeout(2000);
+      await this.page.waitForLoadState("networkidle");
 
-  //     console.log(`✅ Successfully logged in with device ID: ${deviceId}`);
-  //     return true;
-  //   } catch (error) {
-  //     console.error(`❌ Failed to login with device ID ${deviceId}:`, error.message);
-  //     throw error;
-  //   }
-  // }
+      console.log(`✅ Successfully logged in with device ID: ${deviceId}`);
+      return true;
+    } catch (error) {
+      console.error(`❌ Failed to login with device ID ${deviceId}:`, error.message);
+      throw error;
+    }
+  }
 
-  // async uploadFile(uploadButton, filePath) {
-  //   const fileChooserPromise = this.page.waitForEvent('filechooser');
-  //   await uploadButton.click();
-  //   const fileChooser = await fileChooserPromise;
-  //   await fileChooser.setFiles(filePath);
-  // }
+  async uploadFile(uploadButton, filePath) {
+    const fileChooserPromise = this.page.waitForEvent("filechooser");
+    await uploadButton.click();
+    const fileChooser = await fileChooserPromise;
+    await fileChooser.setFiles(filePath);
+  }
 
-  // async _performUATLogin(usernameEnv, passwordEnv, userType) {
+  // async _performQALogin(usernameEnv, passwordEnv, userType) {
   //   try {
   //     // Navigate to base URL and wait for login page
-  //     await this.page.goto(process.env.UAT_URL);
+  //     await this.page.goto(process.env.QA_URL);
   //     await this.page.waitForURL(/.*\/login/);
 
   //     // Fill email
-  //     await this.page.getByPlaceholder('Enter email').fill(process.env[usernameEnv]);
-  //     await this.page.getByRole('button', { name: 'Next' }).click();
+  //     await this.page.getByPlaceholder("Enter email").fill(process.env[usernameEnv]);
+  //     await this.page.getByRole("button", { name: "Next" }).click();
   //     await this.page.waitForTimeout(500);
 
   //     // Fill password
-  //     await this.page.getByPlaceholder('Enter your password').fill(process.env[passwordEnv]);
-  //     await this.page.getByRole('button', { name: 'Log In' }).click();
+  //     await this.page.getByPlaceholder("Enter your password").fill(process.env[passwordEnv]);
+  //     await this.page.getByRole("button", { name: "Log In" }).click();
   //     await this.page.waitForURL(/.*\/route-me/);
 
   //     // Wait for spinner to disappear
@@ -82,23 +82,23 @@ export class BasePage {
   //   }
   // }
 
-  // async performUATAdminLogin() {
-  //   return this._performUATLogin('UAT_ADMIN_USERNAME', 'UAT_ADMIN_PASSWORD', 'admin-CodyTest(UAT)');
+  // async performQAAdminLogin() {
+  //   return this._performQALogin("QA_ADMIN_ONE_USERNAME", "QA_ADMIN_PASSWORD", "admin (QA)");
   // }
 
-  // async performUATProviderLogin() {
-  //   return this._performUATLogin('UAT_PROVIDER_USERNAME', 'UAT_PROVIDER_PASSWORD', 'provider-CodyTest(UAT)');
+  // async performQAProviderLogin() {
+  //   return this._performQALogin("QA_PROVIDER_ONE_USERNAME", "QA_PROVIDER_PASSWORD", "provider (QA)");
   // }
 
-  // async performUATPatientLogin() {
-  //   return this._performUATLogin('UAT_PATIENT_USERNAME', 'UAT_PATIENT_PASSWORD', 'patient-CodyTest(UAT)');
+  // async performQAPatientLogin() {
+  //   return this._performQALogin("QA_PATIENT_ONE_USERNAME", "QA_PATIENT_PASSWORD", "patient (QA)");
   // }
 
-  // async performUATCoordinatorLogin() {
-  //   return this._performUATLogin('UAT_COORDINATOR_USERNAME', 'UAT_COORDINATOR_PASSWORD', 'coordinator-CodyTest(UAT)');
+  // async performQACoordinatorLogin() {
+  //   return this._performQALogin("QA_COORDINATOR_ONE_USERNAME", "QA_COORDINATOR_PASSWORD", "coordinator (QA)");
   // }
 
-  // async performUATsuperAdminLogin() {
-  //   return this._performUATLogin('UAT_SUPERADMIN_USERNAME', 'UAT_SUPERADMIN_PASSWORD', 'superadmin-CodyTest(UAT)');
+  // async performQASuperAdminLogin() {
+  //   return this._performQALogin("QA_SUPERADMIN_USERNAME", "QA_SUPERADMIN_PASSWORD", "superadmin (QA)");
   // }
 }

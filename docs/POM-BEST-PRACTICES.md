@@ -27,26 +27,27 @@ This guide provides a structured approach to using Playwright with the Page Obje
 - The **Page Object class** should represent a single page or a distinct component.
 - **Selectors** for all elements should be defined as properties in the constructor.
 - **Methods** should perform multi-step, user-level actions (e.g., `login(user, pass)`).
+- **Keep it clean** - Remove unused locators and methods. Dead code clutters the POM and makes maintenance harder.
 
-Basically, I want to keep the POM focused on essential multi-step actions while maintaining clarity in the spec files.
+Basically, I want to keep the POM focused on essential multi-step actions while maintaining clarity in the spec files. Regularly review and remove elements that are no longer referenced in any tests.
 
 **Example: `LoginPage.js`**
 
 ```javascript
-import { BasePage } from '../base-page.js'; // Don't import Page from @playwright/test
+import { BasePage } from "../base-page.js"; // Don't import Page from @playwright/test
 
 export class LoginPage extends BasePage {
   constructor(page) {
     super(page);
 
     // Define locators as properties in the constructor
-    this.usernameInput = this.page.getByLabel('Username');
-    this.passwordInput = this.page.getByLabel('Password');
-    this.loginButton = this.page.getByRole('button', { name: 'Login' });
+    this.usernameInput = this.page.getByLabel("Username");
+    this.passwordInput = this.page.getByLabel("Password");
+    this.loginButton = this.page.getByRole("button", { name: "Login" });
   }
 
   async navigate() {
-    await this.page.goto('/login');
+    await this.page.goto("/login");
   }
 
   async login(username, password) {
@@ -87,11 +88,11 @@ export class LoginPage extends BasePage {
 ```javascript
 // ✅ Keep inline - dynamic test data, no clear name
 await expect(page.getByText(`${TEST_DATA.DEVICE_NAME} (you)`)).toBeVisible();
-await expect(page.getByText('cody test patient Cody Test Institution')).toBeVisible();
+await expect(page.getByText("cody test patient Cody Test Institution")).toBeVisible();
 
 // ✅ Add to POM - clear semantic name, reusable
-this.deviceIdBadgeText = page.getByText('Device ID');
-this.sessionCanceledToast = page.getByText('Session request canceled');
+this.deviceIdBadgeText = page.getByText("Device ID");
+this.sessionCanceledToast = page.getByText("Session request canceled");
 ```
 
 ---
@@ -102,17 +103,17 @@ When you need to use inline locators, include `{ page }` in the test signature r
 
 ```javascript
 // ⚠️ Works but verbose - avoid this pattern
-test('example', async () => {
-  await expect(sessionOverviewPage.page.getByText('error')).toBeVisible();
+test("example", async () => {
+  await expect(sessionOverviewPage.page.getByText("error")).toBeVisible();
 });
 
 // ✅ Cleaner - include { page } in test signature when needed
-test('example', async ({ page }) => {
-  await expect(page.getByText('error')).toBeVisible();
+test("example", async ({ page }) => {
+  await expect(page.getByText("error")).toBeVisible();
 });
 
 // ✅ Remove { page } when only using POM locators
-test('example', async () => {
+test("example", async () => {
   await expect(sessionOverviewPage.deviceIdBadgeText).toBeVisible();
 });
 ```
@@ -139,7 +140,7 @@ When tests span multiple pages or components, each POM should own its scope. Use
 **Implementation:**
 
 ```javascript
-test.describe('Session Details @regression', () => {
+test.describe("Session Details @regression", () => {
   let providerDashboardPage;
   let sessionOverviewPage;
 
@@ -149,14 +150,14 @@ test.describe('Session Details @regression', () => {
     await providerDashboardPage.navigateToProviderDashboard();
   });
 
-  test('Upload attachment', async ({ page }) => {
+  test("Upload attachment", async ({ page }) => {
     // Dashboard actions
     await providerDashboardPage.scheduleAppointmentWithPatient(TEST_DATA.PATIENT_NAME);
     await providerDashboardPage.sessionScheduledText.first().click();
 
     // Session overview actions
     await sessionOverviewPage.attachmentsTab.click();
-    await sessionOverviewPage.uploadAttachment('./tests/images/test.jpg');
+    await sessionOverviewPage.uploadAttachment("./tests/images/test.jpg");
     await expect(sessionOverviewPage.attachmentElement).toBeVisible();
 
     // Cleanup via dashboard
@@ -192,11 +193,11 @@ All test data should be defined in a centralized `TEST_DATA` object immediately 
 **Example: Complete TEST_DATA Structure**
 
 ```javascript
-import { test, expect } from '@playwright/test';
-import { UsersTablePage } from '../../models/pages/admin/admin-users-table.page.js';
+import { test, expect } from "@playwright/test";
+import { UsersTablePage } from "../../models/pages/admin/admin-users-table.page.js";
 
 // Use stored auth
-test.use({ storageState: 'playwright/.auth/admin.json' });
+test.use({ storageState: "playwright/.auth/admin.json" });
 
 // ========================================
 // TEST DATA CONSTANTS
@@ -206,37 +207,37 @@ test.use({ storageState: 'playwright/.auth/admin.json' });
 const TEST_DATA = {
   // User invitation test data
   USER: {
-    FIRST_NAME: 'John',
-    LAST_NAME: 'Doe',
-    EMAIL_PREFIX: 'john.doe',
-    ROLE: 'Patient',
-    INSTITUTION: 'Cody Test',
+    FIRST_NAME: "John",
+    LAST_NAME: "Doe",
+    EMAIL_PREFIX: "john.doe",
+    ROLE: "Patient",
+    INSTITUTION: "Cody Test",
   },
   // Search and filter test data
   SEARCH: {
-    USER_SEARCH_TERM: 'cody test provider-',
+    USER_SEARCH_TERM: "cody test provider-",
   },
   // Form validation test data
   VALIDATION: {
-    VALID_FIRST_NAME: 'John',
-    VALID_LAST_NAME: 'Doe',
-    VALID_EMAIL: 'example@domain.com',
-    INVALID_CHARACTERS: '%^&*',
+    VALID_FIRST_NAME: "John",
+    VALID_LAST_NAME: "Doe",
+    VALID_EMAIL: "example@domain.com",
+    INVALID_CHARACTERS: "%^&*",
   },
   // Dropdown options and selections
   ROLES: {
-    ADMIN: 'Admin',
-    PATIENT: 'Patient',
-    PROVIDER: 'Provider',
-    COORDINATOR: 'Coordinator',
+    ADMIN: "Admin",
+    PATIENT: "Patient",
+    PROVIDER: "Provider",
+    COORDINATOR: "Coordinator",
   },
   INSTITUTIONS: {
-    CODY_TEST: 'Cody Test',
-    GLOBAL_MED: 'GlobalMed',
+    CODY_TEST: "Cody Test",
+    GLOBAL_MED: "GlobalMed",
   },
 };
 
-test.describe('Admin User Management @regression', () => {
+test.describe("Admin User Management @regression", () => {
   // Test implementation here...
 });
 ```
@@ -253,9 +254,9 @@ test.describe('Admin User Management @regression', () => {
 
 ```javascript
 // Wrong - data scattered throughout tests
-test('example test', async () => {
-  const firstName = 'John'; // Don't define here
-  const email = 'test@example.com'; // Don't define here
+test("example test", async () => {
+  const firstName = "John"; // Don't define here
+  const email = "test@example.com"; // Don't define here
 });
 ```
 
@@ -263,7 +264,7 @@ test('example test', async () => {
 
 ```javascript
 // Correct - reference centralized data directly
-test('example test', async () => {
+test("example test", async () => {
   // Use TEST_DATA directly when no transformation needed
   await userTablePage.fillForm(TEST_DATA.USER.FIRST_NAME, TEST_DATA.USER.LAST_NAME);
 
@@ -277,7 +278,7 @@ test('example test', async () => {
 
 ```javascript
 // ❌ Cluttered - Unnecessary const declarations
-test('invite user', async () => {
+test("invite user", async () => {
   const firstName = TEST_DATA.USER.FIRST_NAME; // Unnecessary
   const lastName = TEST_DATA.USER.LAST_NAME; // Unnecessary
   const role = TEST_DATA.USER.ROLE; // Unnecessary
@@ -286,7 +287,7 @@ test('invite user', async () => {
 });
 
 // ✅ Clean - Direct references
-test('invite user', async () => {
+test("invite user", async () => {
   const email = `${TEST_DATA.USER.EMAIL_PREFIX}.${Date.now()}@example.com`; // Only when needed
 
   await userTablePage.inviteUser(TEST_DATA.USER.FIRST_NAME, TEST_DATA.USER.LAST_NAME, email, TEST_DATA.USER.ROLE);
@@ -307,19 +308,19 @@ test('invite user', async () => {
 **Example: `login.spec.js`**
 
 ```javascript
-import { test, expect } from '@playwright/test';
-import { LoginPage } from '../pages/LoginPage.js';
-import { DashboardPage } from '../pages/DashboardPage.js';
+import { test, expect } from "@playwright/test";
+import { LoginPage } from "../pages/LoginPage.js";
+import { DashboardPage } from "../pages/DashboardPage.js";
 
-test('should log in successfully', async ({ page }) => {
+test("should log in successfully", async ({ page }) => {
   const loginPage = new LoginPage(page);
   const dashboardPage = new ProviderDashboardPage(page);
 
   await loginPage.navigate();
-  await loginPage.login('testuser@example.com', 'password123');
+  await loginPage.login("testuser@example.com", "password123");
 
   // Explicit assertions make the test's purpose clear
-  await expect(page).toHaveURL('/dashboard');
+  await expect(page).toHaveURL("/dashboard");
   await expect(dashboardPage.welcomeMessage).toBeVisible();
 });
 ```
@@ -327,22 +328,22 @@ test('should log in successfully', async ({ page }) => {
 **Example: `users-table.spec.js`**
 
 ```javascript
-import { test, expect } from '@playwright/test';
-import { UsersTablePage } from '../../models/pages/admin/admin-users-table.page.js';
+import { test, expect } from "@playwright/test";
+import { UsersTablePage } from "../../models/pages/admin/admin-users-table.page.js";
 
 // ========================================
 // TEST DATA CONSTANTS
 // ========================================
 const TEST_DATA = {
   USER: {
-    FIRST_NAME: 'John',
-    LAST_NAME: 'Doe',
-    EMAIL_PREFIX: 'john.doe',
-    ROLE: 'Patient',
+    FIRST_NAME: "John",
+    LAST_NAME: "Doe",
+    EMAIL_PREFIX: "john.doe",
+    ROLE: "Patient",
   },
 };
 
-test('Validate Successful invite Submission on Invite Users Modal @[111700]', async ({ page }) => {
+test("Validate Successful invite Submission on Invite Users Modal @[111700]", async ({ page }) => {
   const userTablePage = new UsersTablePage(page);
   await userTablePage.navigate();
 
@@ -364,26 +365,26 @@ To keep the test file clean and focused on user intent, all the individual steps
 **Example `UsersTablePage.js` (simplified)**
 
 ```javascript
-import { BasePage } from '../../base-page.js';
+import { BasePage } from "../../base-page.js";
 
 export class UsersTablePage extends BasePage {
   constructor(page) {
     super(page);
 
     // Define locators as properties in the constructor
-    this.inviteUsersButton = this.page.getByRole('button', {
-      name: 'Invite Users',
+    this.inviteUsersButton = this.page.getByRole("button", {
+      name: "Invite Users",
     });
-    this.firstNameInput = this.page.getByLabel('First Name');
+    this.firstNameInput = this.page.getByLabel("First Name");
     // ... other locators for the modal
-    this.inviteUsersSendInviteButton = this.page.getByRole('button', {
-      name: 'Send Invite',
+    this.inviteUsersSendInviteButton = this.page.getByRole("button", {
+      name: "Send Invite",
     });
-    this.invitationSentMessage = this.page.getByText('Invitation sent successfully!');
+    this.invitationSentMessage = this.page.getByText("Invitation sent successfully!");
   }
 
   async navigate() {
-    await this.page.goto('/admin/users-table');
+    await this.page.goto("/admin/users-table");
   }
 
   async inviteUser(firstName, lastName, email, role) {
@@ -405,28 +406,28 @@ This example shows how to refactor a test from using direct page calls to proper
 **❌ Before - Direct page calls scattered throughout test:**
 
 ```javascript
-test('Verify Edit Profile screen UI elements @[117700]', async ({ page }) => {
+test("Verify Edit Profile screen UI elements @[117700]", async ({ page }) => {
   // Open edit profile modal
-  await page.getByRole('button', { name: 'Edit Edit' }).click();
+  await page.getByRole("button", { name: "Edit Edit" }).click();
 
   // Verify modal header and all form field labels are visible
-  await expect(page.getByText('Edit profile detailsFirst')).toBeVisible();
-  await expect(page.getByRole('dialog').getByText('First name')).toBeVisible();
-  await expect(page.getByRole('dialog').getByText('Last name')).toBeVisible();
-  await expect(page.getByRole('dialog').getByText('Languages spoken')).toBeVisible();
+  await expect(page.getByText("Edit profile detailsFirst")).toBeVisible();
+  await expect(page.getByRole("dialog").getByText("First name")).toBeVisible();
+  await expect(page.getByRole("dialog").getByText("Last name")).toBeVisible();
+  await expect(page.getByRole("dialog").getByText("Languages spoken")).toBeVisible();
 
   // Verify action buttons are visible and Save button is initially disabled
-  await expect(page.getByRole('button', { name: 'Cancel' })).toBeVisible();
-  await expect(page.getByRole('button', { name: 'Save changes' })).toBeVisible();
-  await expect(page.getByRole('button', { name: 'Save changes' })).toBeDisabled();
-  await page.getByRole('button', { name: 'Cancel' }).click();
+  await expect(page.getByRole("button", { name: "Cancel" })).toBeVisible();
+  await expect(page.getByRole("button", { name: "Save changes" })).toBeVisible();
+  await expect(page.getByRole("button", { name: "Save changes" })).toBeDisabled();
+  await page.getByRole("button", { name: "Cancel" }).click();
 });
 ```
 
 **✅ After - Clean POM-based test:**
 
 ```javascript
-test('Verify Edit Profile screen UI elements @[117700]', async () => {
+test("Verify Edit Profile screen UI elements @[117700]", async () => {
   // Open edit profile modal
   await myAccountPage.openEditProfileModal();
 
@@ -467,12 +468,12 @@ When a user action requires 3 or more steps, encapsulate it in a POM method:
 
 ```javascript
 // ❌ Bad - Repetitive code in test files
-await page.getByRole('link', { name: 'Reporting Period ChevronDown' }).click();
-await page.getByTestId('item Week').click();
-await page.getByRole('button', { name: 'Apply Filter' }).click();
+await page.getByRole("link", { name: "Reporting Period ChevronDown" }).click();
+await page.getByTestId("item Week").click();
+await page.getByRole("button", { name: "Apply Filter" }).click();
 
 // ✅ Good - Encapsulated in POM method
-await adminDataReportingPage.applyReportingPeriodFilter('Week');
+await adminDataReportingPage.applyReportingPeriodFilter("Week");
 ```
 
 **Method Naming Conventions**
@@ -611,7 +612,7 @@ async resetSpanishLanguageIfPresent() {
 When tests span multiple pages or components, instantiate all needed page objects in `beforeEach`:
 
 ```javascript
-test.describe('Admin Reporting @regression', () => {
+test.describe("Admin Reporting @regression", () => {
   let usersTablePage;
   let adminDataReportingPage;
 
@@ -642,21 +643,21 @@ Include `{ page }` when you need inline locators or direct page access. Remove i
 
 ```javascript
 // ✅ Include { page } - inline locator needed for dynamic assertion
-test('Verify file upload error', async ({ page }) => {
-  await sessionOverviewPage.uploadAttachment('./tests/images/30mb.jpg');
+test("Verify file upload error", async ({ page }) => {
+  await sessionOverviewPage.uploadAttachment("./tests/images/30mb.jpg");
   await expect(page.getByText('The file "30mb.jpg" exceeds')).toBeVisible();
 });
 
 // ✅ Remove { page } - only POM locators used
-test('Verify Edit Profile screen UI elements @[117700]', async () => {
+test("Verify Edit Profile screen UI elements @[117700]", async () => {
   await myAccountPage.openEditProfileModal();
   await expect(myAccountPage.editProfileModal).toBeVisible();
 });
 
 // ✅ Include { page } - direct page access needed
-test('Verify page URL after save', async ({ page }) => {
+test("Verify page URL after save", async ({ page }) => {
   await myAccountPage.saveChanges();
-  await expect(page).toHaveURL('/dashboard');
+  await expect(page).toHaveURL("/dashboard");
 });
 ```
 
@@ -668,17 +669,17 @@ When tests span multiple pages, organize TEST_DATA by functional area rather tha
 const TEST_DATA = {
   // Organize by feature/workflow, not by page
   REPORTING_FILTERS: {
-    PERIODS: ['Week', 'Day', 'Month'],
-    APPOINTMENT_TYPES: ['Video', 'Chat', 'All'],
-    SERVICES: ['Pediatrics', 'Toxicology Report'],
+    PERIODS: ["Week", "Day", "Month"],
+    APPOINTMENT_TYPES: ["Video", "Chat", "All"],
+    SERVICES: ["Pediatrics", "Toxicology Report"],
   },
   USER_MANAGEMENT: {
-    ADMIN_USER: { name: 'Test Admin', role: 'Admin' },
-    PATIENT_USER: { name: 'Test Patient', role: 'Patient' },
+    ADMIN_USER: { name: "Test Admin", role: "Admin" },
+    PATIENT_USER: { name: "Test Patient", role: "Patient" },
   },
 };
 
-test('Verify multi-select filters', async ({ page }) => {
+test("Verify multi-select filters", async ({ page }) => {
   await adminDataReportingPage.applyMultipleServices(TEST_DATA.REPORTING_FILTERS.SERVICES);
   // assertions...
 });
@@ -692,18 +693,18 @@ test('Verify multi-select filters', async ({ page }) => {
 
 ```javascript
 // Wrong
-import { Page } from '@playwright/test';
+import { Page } from "@playwright/test";
 ```
 
 **❌ Don't Access `page` Through POM for Inline Locators**
 
 ```javascript
 // Wrong - verbose and inconsistent
-await expect(sessionOverviewPage.page.getByText('error')).toBeVisible();
+await expect(sessionOverviewPage.page.getByText("error")).toBeVisible();
 
 // Correct - include { page } in test signature
-test('example', async ({ page }) => {
-  await expect(page.getByText('error')).toBeVisible();
+test("example", async ({ page }) => {
+  await expect(page.getByText("error")).toBeVisible();
 });
 ```
 
@@ -730,22 +731,66 @@ async clickClearButton() {
 
 ```javascript
 // Wrong - unclear names, keep these inline in tests
-this.modal = page.getByTestId('modal'); // Too generic
-this.text1 = page.getByText('Some text'); // Non-descriptive
-this.span = page.locator('span').first(); // Not semantic
+this.modal = page.getByTestId("modal"); // Too generic
+this.text1 = page.getByText("Some text"); // Non-descriptive
+this.span = page.locator("span").first(); // Not semantic
 
 // Correct - keep in test file as inline locators
-test('example', async ({ page }) => {
-  await expect(page.getByTestId('modal')).toBeVisible();
-  await expect(page.getByText('cody test patient Cody Test')).toBeVisible();
+test("example", async ({ page }) => {
+  await expect(page.getByTestId("modal")).toBeVisible();
+  await expect(page.getByText("cody test patient Cody Test")).toBeVisible();
 });
 ```
+
+**❌ Don't Keep Dead Code or Unused Locators**
+
+```javascript
+// Wrong - unused locators clutter the POM
+export class LoginPage extends BasePage {
+  constructor(page) {
+    super(page);
+    this.usernameInput = page.getByLabel("Username");
+    this.passwordInput = page.getByLabel("Password");
+    this.loginButton = page.getByRole("button", { name: "Login" });
+    this.forgotPasswordLink = page.getByRole("link", { name: "Forgot" }); // ❌ Never used!
+    this.rememberMeCheckbox = page.getByLabel("Remember me"); // ❌ Never used!
+  }
+
+  // ❌ Method never called anywhere
+  async clickForgotPassword() {
+    await this.forgotPasswordLink.click();
+  }
+}
+
+// Correct - only keep what's actively used
+export class LoginPage extends BasePage {
+  constructor(page) {
+    super(page);
+    this.usernameInput = page.getByLabel("Username");
+    this.passwordInput = page.getByLabel("Password");
+    this.loginButton = page.getByRole("button", { name: "Login" });
+  }
+
+  async login(username, password) {
+    await this.usernameInput.fill(username);
+    await this.passwordInput.fill(password);
+    await this.loginButton.click();
+  }
+}
+```
+
+**Regular Maintenance:**
+
+- Periodically search for unused locators and methods across your test suite
+- When removing tests, clean up any POM elements that are no longer referenced
+- If a feature is deprecated, remove its associated POM locators and methods
+- Use your IDE's "Find Usages" feature to verify if elements are referenced before removing
 
 **❌ Don't Create Unnecessary Variable Assignments**
 
 ```javascript
 // Wrong - unnecessary const declarations for static data
-test('example test', async () => {
+test("example test", async () => {
   const firstName = TEST_DATA.USER.FIRST_NAME; // Unnecessary
   const lastName = TEST_DATA.USER.LAST_NAME; // Unnecessary
   const role = TEST_DATA.USER.ROLE; // Unnecessary
@@ -775,7 +820,7 @@ await expect(loginPage.welcomeMessage).toBeVisible();
 
 ```javascript
 // Correct - direct references for static data, variables only when needed
-test('example test', async () => {
+test("example test", async () => {
   // Only create variables when transformation is required
   const email = `${TEST_DATA.USER.EMAIL_PREFIX}.${Date.now()}@example.com`;
 
@@ -790,12 +835,12 @@ When using `.nth()` for indexed locators, give them descriptive names:
 
 ```javascript
 // ❌ Bad - unclear what nth(2) represents
-this.closeButton2 = this.page.getByRole('button', { name: 'XClose' }).nth(2);
+this.closeButton2 = this.page.getByRole("button", { name: "XClose" }).nth(2);
 
 // ✅ Better - describes the element's purpose or position
-this.languageCloseButton = this.page.getByRole('button', { name: 'XClose' }).nth(2);
-this.countryDropdown = this.page.getByTestId('custom-select-item-wrapper').nth(1);
-this.stateDropdown = this.page.getByTestId('custom-select-item-wrapper').nth(2);
+this.languageCloseButton = this.page.getByRole("button", { name: "XClose" }).nth(2);
+this.countryDropdown = this.page.getByTestId("custom-select-item-wrapper").nth(1);
+this.stateDropdown = this.page.getByTestId("custom-select-item-wrapper").nth(2);
 ```
 
 ---
@@ -814,6 +859,8 @@ Use this checklist when writing or reviewing test code:
 - [ ] Modal methods include proper `waitFor()` states
 - [ ] Conditional reset methods handle cleanup gracefully
 - [ ] Only add locators with clear, semantic names
+- [ ] No unused locators or dead code
+- [ ] All elements are actively referenced in tests
 
 **Test File:**
 

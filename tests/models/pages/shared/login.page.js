@@ -95,6 +95,13 @@ export class LoginPage extends BasePage {
     await this.forgotPasswordHeading.waitFor();
   }
 
+  // Login user
+  async login(email, password) {
+    await this.navigateToPasswordStep(email);
+    await this.passwordInput.fill(password);
+    await this.loginButton.click();
+  }
+
   // Language Selection Method
   async selectLanguage(language) {
     const languageMap = {

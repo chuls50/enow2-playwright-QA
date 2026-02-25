@@ -18,6 +18,26 @@ npm install
 npx playwright install
 ```
 
+## Documentation
+
+📚 **[View Project Wiki & User Manual](docs/roles/project-wiki.md)**
+
+Comprehensive role-based documentation for the eNow2 platform:
+
+- **[Admin Guide](docs/roles/admin-role.md)** - Full system administration and configuration
+- **[Provider Guide](docs/roles/provider-role.md)** - Healthcare provider workflows and features
+- **[Patient Guide](docs/roles/patient-role.md)** - Patient portal and appointment management
+- **[Coordinator Guide](docs/roles/coordinator-role.md)** - Appointment coordination and Command Center
+- **[Device Guide](docs/roles/device-role.md)** - Shared device/kiosk setup and management
+
+Each guide includes:
+
+- Navigation and feature descriptions
+- Step-by-step workflows
+- Best practices
+- Profile menu and account settings
+- Role-specific capabilities and limitations
+
 ## Test Execution Phases
 
 The test suite runs in 4 sequential phases:
