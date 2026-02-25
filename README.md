@@ -38,6 +38,76 @@ Each guide includes:
 - Profile menu and account settings
 - Role-specific capabilities and limitations
 
+### Testing Patterns & Guides
+
+- **[API Route Interception Guide](docs/API-ROUTE-INTERCEPTION.md)** - Network mocking patterns, examples, and best practices
+
+## Completed Test Suites
+
+### 📊 Test Coverage Overview
+
+✅ **22 test spec files** completed across multiple categories
+
+### Smoke Tests (1 spec)
+
+Located in `tests/smoke/`
+
+- [auth-verification.spec.js](tests/smoke/auth-verification.spec.js) - Verifies authentication storage states
+
+### Unauthenticated Tests (5 specs)
+
+Located in `tests/single-user-tests/unauthenticated/`
+
+- [login.spec.js](tests/single-user-tests/unauthenticated/login.spec.js) - User login flows
+- [forgot-password.spec.js](tests/single-user-tests/unauthenticated/forgot-password.spec.js) - Password recovery workflow
+- [create-new-password.spec.js](tests/single-user-tests/unauthenticated/create-new-password.spec.js) - Password reset flow
+- [password.spec.js](tests/single-user-tests/unauthenticated/password.spec.js) - Password field validation
+- [device-id-access.spec.js](tests/single-user-tests/unauthenticated/device-id-access.spec.js) - Device ID authentication
+
+### Provider Tests (8 specs)
+
+Located in `tests/single-user-tests/provider/`
+
+- [create-account-onboard-provider.spec.js](tests/single-user-tests/provider/create-account-onboard-provider.spec.js) - Provider account creation
+- [provider-my-account.spec.js](tests/single-user-tests/provider/provider-my-account.spec.js) - My Account tab functionality
+- [provider-edit-profile.spec.js](tests/single-user-tests/provider/provider-edit-profile.spec.js) - Profile editing
+- [provider-edit-license-to-practice.spec.js](tests/single-user-tests/provider/provider-edit-license-to-practice.spec.js) - License management
+- [manage-calendar.spec.js](tests/single-user-tests/provider/manage-calendar.spec.js) - Calendar settings and availability
+- [change-time-zone.spec.js](tests/single-user-tests/provider/change-time-zone.spec.js) - Time zone configuration
+- [manage-notifications.spec.js](tests/single-user-tests/provider/manage-notifications.spec.js) - Notification preferences
+
+### Patient Tests (6 specs)
+
+Located in `tests/single-user-tests/patient/`
+
+- [create-account-onboard-patient.spec.js](tests/single-user-tests/patient/create-account-onboard-patient.spec.js) - Patient account creation (part 1)
+- [create-account-onboard-patient-pt2.spec.js](tests/single-user-tests/patient/create-account-onboard-patient-pt2.spec.js) - Patient account creation (part 2)
+- [patient-my-account.spec.js](tests/single-user-tests/patient/patient-my-account.spec.js) - My Account tab functionality (part 1)
+- [patient-my-account-pt2.spec.js](tests/single-user-tests/patient/patient-my-account-pt2.spec.js) - My Account tab functionality (part 2)
+- [patient-edit-profile.spec.js](tests/single-user-tests/patient/patient-edit-profile.spec.js) - Profile editing (part 1)
+- [patient-edit-profile-pt2.spec.js](tests/single-user-tests/patient/patient-edit-profile-pt2.spec.js) - Profile editing (part 2)
+
+### Device Tests (2 specs)
+
+Located in `tests/single-user-tests/device/`
+
+- [create-account-onboard-device-id.spec.js](tests/single-user-tests/device/create-account-onboard-device-id.spec.js) - Device account creation
+- [device-id-my-account-and-edit.spec.js](tests/single-user-tests/device/device-id-my-account-and-edit.spec.js) - Device account settings
+
+### In Progress
+
+The following role folders are ready for test development:
+
+- `tests/single-user-tests/admin/` - Admin role tests
+- `tests/single-user-tests/coordinator/` - Coordinator role tests
+- `tests/single-user-tests/super-admin/` - Super admin role tests
+- `tests/single-user-tests/admin-coordinator/` - Combined admin-coordinator tests
+- `tests/single-user-tests/provider-admin/` - Combined provider-admin tests
+- `tests/single-user-tests/provider-coordinator/` - Combined provider-coordinator tests
+- `tests/single-user-tests/provider-admin-coordinator/` - Combined provider-admin-coordinator tests
+- `tests/multi-user-tests/` - Multi-user interaction tests
+- `tests/destructive/` - Global configuration-changing tests
+
 ## Test Execution Phases
 
 The test suite runs in 4 sequential phases:
