@@ -7,9 +7,6 @@ playwright/.auth/*.json
 .env.local
 .env.*
 
-# Documentation 
-docs/
-
 # Playwright test results
 playwright-report/
 test-results/
