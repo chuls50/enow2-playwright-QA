@@ -28,13 +28,13 @@ For security and privacy, test reports are stored as private **GitHub Actions Ar
 
 Tests run automatically every 3 days using a staggered schedule to prioritize overnight execution:
 
-| Icon | Phase | Start Time (UTC) | Target Completion | Purpose |
-| :--- | :--- | :--- | :--- | :--- |
-| 🔧 | **Auth Setup** | 00:00 (Midnight) | ~00:30 | Generate session storage files |
-| 💨 | **Smoke Tests** | 01:30 | ~01:45 | Basic login & auth verification |
-| 👤 | **Single-User** | 03:00 | ~04:30 | Comprehensive role-isolated testing |
-| 👥 | **Multi-User** | 04:30 | ~05:30 | Real-time user interaction (sequential) |
-| 🚀 | **Full Regression** | Manual/On-Demand | ~120 min | Full suite verification |
+| Icon | Phase | Start Time (UTC) | Purpose |
+| :--- | :--- | :--- | :--- |
+| 🔧 | **Auth Setup** | 00:00 (Midnight) | Generate session storage files |
+| 💨 | **Smoke Tests** | 01:30 | Basic login & auth verification |
+| 👤 | **Single-User** | 03:00 | Comprehensive role-isolated testing |
+| 👥 | **Multi-User** | 04:30 | Real-time user interaction (sequential) |
+| 🚀 | **Full Regression** | Manual/On-Demand | Full suite verification |
 
 All scheduled tests aim to complete by ~6:30 AM UTC, ensuring fresh results are available before the workday begins.
 
