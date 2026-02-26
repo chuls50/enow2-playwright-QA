@@ -46,6 +46,7 @@ test.describe("Provider @regression", () => {
     await expect(calendarSettingsPage.timeZoneCancelButton).toBeEnabled();
   });
 
+  // flaky in CI
   test.skip("Verify Automatic Time Zone toggle functionality - toggle ON @[111240] @provider @functional", async ({ page }) => {
     // 3. Click on "Change Time Zone" link
     await calendarSettingsPage.openChangeTimeZoneModal();
@@ -80,6 +81,7 @@ test.describe("Provider @regression", () => {
     await expect(calendarSettingsPage.mountainStandardTime).toBeVisible();
   });
 
+  // flaky in CI
   test.skip("Verify Automatic Time Zone toggle functionality - toggle OFF @[111241] @provider @functional", async ({ page }) => {
     // Click on "Change Time Zone" link
     await calendarSettingsPage.openChangeTimeZoneModal();

@@ -20,7 +20,7 @@ export class MyAccountPage extends BasePage {
     this.myAccountLabel = page.getByRole("paragraph").filter({ hasText: "My account" });
     this.myAccountText = page.getByText("Update and manage your account");
     this.profileIcon = page.getByTestId("avatar").locator("div").nth(1);
-    this.profileName = page.getByText("cody test admin Cody Test Institution");
+    // this.profileName = page.getByText("cody test admin Cody Test Institution");
     this.uploadPhotoButton = page.getByRole("button", { name: "Download Upload photo" });
     this.deletePhotoButton = page.getByRole("button", { name: "Trash Delete photo" });
 
