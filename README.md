@@ -25,7 +25,7 @@ Automated end-to-end testing framework for eNow2 using Playwright.
 Tests run automatically every 3 days with staggered start times for overnight execution:
 
 - **🔧 Auth Setup**: 00:00 UTC (midnight) - ~30 min
-- **💨 Smoke Tests**: 01:30 UTC - ~15 min  
+- **💨 Smoke Tests**: 01:30 UTC - ~15 min
 - **👤 Single-User Tests**: 03:00 UTC - ~90 min
 - **👥 Multi-User Tests**: 04:30 UTC - ~60 min
 - **🚀 Full Regression**: Manual trigger only - ~120 min
@@ -205,6 +205,7 @@ This project includes multiple GitHub Actions workflows for comprehensive test a
 ### Workflow Features:
 
 **5 Targeted Workflows:**
+
 - 🔧 **Auth Setup** - Validates authentication for all user roles
 - 💨 **Smoke Tests** - Quick verification of core functionality
 - 👤 **Single-User Tests** - Comprehensive role-isolated testing
@@ -212,6 +213,7 @@ This project includes multiple GitHub Actions workflows for comprehensive test a
 - 🚀 **Full Regression** - Complete test suite (manual trigger only)
 
 **Each workflow:**
+
 - ✅ Runs on push/pull request (except Full Regression)
 - ✅ Scheduled to run every 3 days overnight (6:30 AM UTC completion)
 - ✅ Generates and deploys Allure reports to GitHub Pages

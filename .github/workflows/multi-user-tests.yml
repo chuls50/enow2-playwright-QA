@@ -8,6 +8,11 @@ on:
     - cron: '30 4 */3 * *'  # Every 3 days at 04:30 UTC
   workflow_dispatch: # Allow manual trigger
 
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
 jobs:
   test:
     timeout-minutes: 60
