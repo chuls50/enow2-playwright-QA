@@ -1,9 +1,5 @@
 name: Single-User Tests
 on:
-  push:
-    branches: [main, master]
-  pull_request:
-    branches: [main, master]
   schedule:
     - cron: "0 3 */3 * *" # Every 3 days at 03:00 UTC
   workflow_dispatch: # Allow manual trigger

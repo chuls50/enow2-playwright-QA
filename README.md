@@ -16,23 +16,27 @@ For security and privacy, test reports are stored as private **GitHub Actions Ar
 
 ### 🚦 **Workflow Status:**
 
-[![Full Regression Tests](https://github.com/chuls50/enow2-playwright-QA/actions/workflows/playwright.yml/badge.svg)](https://github.com/chuls50/enow2-playwright-QA/actions/workflows/playwright.yml)
-[![Auth Setup Tests](https://github.com/chuls50/enow2-playwright-QA/actions/workflows/auth-setup.yml/badge.svg)](https://github.com/chuls50/enow2-playwright-QA/actions/workflows/auth-setup.yml)
-[![Smoke Tests](https://github.com/chuls50/enow2-playwright-QA/actions/workflows/smoke-tests.yml/badge.svg)](https://github.com/chuls50/enow2-playwright-QA/actions/workflows/smoke-tests.yml)
-[![Single-User Tests](https://github.com/chuls50/enow2-playwright-QA/actions/workflows/single-user-tests.yml/badge.svg)](https://github.com/chuls50/enow2-playwright-QA/actions/workflows/single-user-tests.yml)
-[![Multi-User Tests](https://github.com/chuls50/enow2-playwright-QA/actions/workflows/multi-user-tests.yml/badge.svg)](https://github.com/chuls50/enow2-playwright-QA/actions/workflows/multi-user-tests.yml)
+| Test Suite | Current Status |
+| :--- | :--- |
+| **🚀 Full Regression** | [![Full Regression Tests](https://github.com/chuls50/enow2-playwright-QA/actions/workflows/playwright.yml/badge.svg)](https://github.com/chuls50/enow2-playwright-QA/actions/workflows/playwright.yml) |
+| **🔧 Auth Setup** | [![Auth Setup Tests](https://github.com/chuls50/enow2-playwright-QA/actions/workflows/auth-setup.yml/badge.svg)](https://github.com/chuls50/enow2-playwright-QA/actions/workflows/auth-setup.yml) |
+| **💨 Smoke Tests** | [![Smoke Tests](https://github.com/chuls50/enow2-playwright-QA/actions/workflows/smoke-tests.yml/badge.svg)](https://github.com/chuls50/enow2-playwright-QA/actions/workflows/smoke-tests.yml) |
+| **👤 Single-User** | [![Single-User Tests](https://github.com/chuls50/enow2-playwright-QA/actions/workflows/single-user-tests.yml/badge.svg)](https://github.com/chuls50/enow2-playwright-QA/actions/workflows/single-user-tests.yml) |
+| **👥 Multi-User** | [![Multi-User Tests](https://github.com/chuls50/enow2-playwright-QA/actions/workflows/multi-user-tests.yml/badge.svg)](https://github.com/chuls50/enow2-playwright-QA/actions/workflows/multi-user-tests.yml) |
 
-### 📅 **Test Schedule:**
+### 📅 **Scheduled Execution:**
 
-Tests run automatically every 3 days with staggered start times for overnight execution:
+Tests run automatically every 3 days using a staggered schedule to prioritize overnight execution:
 
-- **🔧 Auth Setup**: 00:00 UTC (midnight) - ~30 min
-- **💨 Smoke Tests**: 01:30 UTC - ~15 min
-- **👤 Single-User Tests**: 03:00 UTC - ~90 min
-- **👥 Multi-User Tests**: 04:30 UTC - ~60 min
-- **🚀 Full Regression**: Manual trigger only - ~120 min
+| Icon | Phase | Start Time (UTC) | Target Completion | Purpose |
+| :--- | :--- | :--- | :--- | :--- |
+| 🔧 | **Auth Setup** | 00:00 (Midnight) | ~00:30 | Generate session storage files |
+| 💨 | **Smoke Tests** | 01:30 | ~01:45 | Basic login & auth verification |
+| 👤 | **Single-User** | 03:00 | ~04:30 | Comprehensive role-isolated testing |
+| 👥 | **Multi-User** | 04:30 | ~05:30 | Real-time user interaction (sequential) |
+| 🚀 | **Full Regression** | Manual/On-Demand | ~120 min | Full suite verification |
 
-All scheduled tests complete by ~6:30 AM UTC, ensuring results are available before the workday begins.
+All scheduled tests aim to complete by ~6:30 AM UTC, ensuring fresh results are available before the workday begins.
 
 ## Prerequisites
 

@@ -1,9 +1,5 @@
 name: Multi-User Tests
 on:
-  push:
-    branches: [main, master]
-  pull_request:
-    branches: [main, master]
   schedule:
     - cron: "30 4 */3 * *" # Every 3 days at 04:30 UTC
   workflow_dispatch: # Allow manual trigger
