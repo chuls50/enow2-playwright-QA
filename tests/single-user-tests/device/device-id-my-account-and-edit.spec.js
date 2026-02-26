@@ -9,7 +9,7 @@ const TEST_DATA = {
   // User info
   USER: {
     NAME: "Cody Device-ID-One",
-    DEVICE_ID: process.env.QA_DEVICE_ONE_ID,
+    DEVICE_ID: "11111",
     EMAIL: "chuls",
     AVATAR_INITIAL: "C",
   },
@@ -23,8 +23,8 @@ const TEST_DATA = {
   },
   // Validation - existing IDs that should fail
   EXISTING_DEVICE_IDS: {
-    DUPLICATE_1: process.env.QA_DEVICE_TWO_ID,
-    DUPLICATE_2: process.env.QA_DEVICE_THREE_ID,
+    DUPLICATE_1: "22222",
+    DUPLICATE_2: "33333",
   },
   // File paths
   FILES: {

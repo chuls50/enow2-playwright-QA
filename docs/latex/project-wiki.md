@@ -1,7 +1,7 @@
 # eNow2 User Manual - Role-Based Documentation
 
-**Version:** 1.0  
-**Last Updated:** February 24, 2026  
+**Version:** 1.1  
+**Last Updated:** February 25, 2026  
 **Application URL:** https://portal.qa-encounterservices.com
 
 ---
@@ -9,6 +9,8 @@
 ## Overview
 
 eNow2 is a comprehensive telehealth platform that enables virtual care delivery through video calls, chat, and appointment management. This documentation is organized by user role for easy navigation and targeted information.
+
+> **Note:** This documentation includes [Workflow Diagrams](./workflow-diagrams.md) and [Screenshots](./screenshots/README.md) captured from the live application.
 
 ### Supported Languages
 
@@ -104,9 +106,9 @@ Each role has a unique left-side navigation menu with role-appropriate features:
 ### Patient
 
 - Dashboard
-- Past Visits
-- Health Profile
 - Vitals Scan
+
+> **Note:** Additional navigation items (Past Visits, Health Profile) may appear based on institution configuration.
 
 ### Coordinator
 

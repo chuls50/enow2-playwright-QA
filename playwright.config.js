@@ -69,7 +69,7 @@ const singleUserProjects = [
 
 export default defineConfig({
   testDir: "./tests",
-  testIgnore: ["**/utils/**", "**/example.spec.js"], // Exclude utilities and example from test execution
+  testIgnore: ["**/utils/**", "**/example.spec.js", "**/documentation-audit.spec.js", "**/appointment-workflow-audit.spec.js"], // Exclude utilities, example, and audit tests from normal execution
   fullyParallel: false, // Sequential execution within projects by default
   forbidOnly: !!process.env.CI,
   retries: process.env.CI ? 1 : 1,
