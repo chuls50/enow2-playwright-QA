@@ -2,6 +2,36 @@
 
 Automated end-to-end testing framework for eNow2 using Playwright.
 
+## 📊 Test Results & Reports
+
+### 🎯 **Live Allure Reports:**
+
+- **[Full Regression Report](https://chuls50.github.io/enow2-playwright-QA/)** - Complete test suite (manual trigger)
+- **[Auth Setup Report](https://chuls50.github.io/enow2-playwright-QA/auth-setup/)** - Authentication setup tests
+- **[Smoke Tests Report](https://chuls50.github.io/enow2-playwright-QA/smoke/)** - Quick verification tests
+- **[Single-User Tests Report](https://chuls50.github.io/enow2-playwright-QA/single-user/)** - Role-isolated tests
+- **[Multi-User Tests Report](https://chuls50.github.io/enow2-playwright-QA/multi-user/)** - Multi-user interaction tests
+
+### 🚦 **Workflow Status:**
+
+[![Full Regression Tests](https://github.com/chuls50/enow2-playwright-QA/actions/workflows/playwright.yml/badge.svg)](https://github.com/chuls50/enow2-playwright-QA/actions/workflows/playwright.yml)
+[![Auth Setup Tests](https://github.com/chuls50/enow2-playwright-QA/actions/workflows/auth-setup.yml/badge.svg)](https://github.com/chuls50/enow2-playwright-QA/actions/workflows/auth-setup.yml)
+[![Smoke Tests](https://github.com/chuls50/enow2-playwright-QA/actions/workflows/smoke-tests.yml/badge.svg)](https://github.com/chuls50/enow2-playwright-QA/actions/workflows/smoke-tests.yml)
+[![Single-User Tests](https://github.com/chuls50/enow2-playwright-QA/actions/workflows/single-user-tests.yml/badge.svg)](https://github.com/chuls50/enow2-playwright-QA/actions/workflows/single-user-tests.yml)
+[![Multi-User Tests](https://github.com/chuls50/enow2-playwright-QA/actions/workflows/multi-user-tests.yml/badge.svg)](https://github.com/chuls50/enow2-playwright-QA/actions/workflows/multi-user-tests.yml)
+
+### 📅 **Test Schedule:**
+
+Tests run automatically every 3 days with staggered start times for overnight execution:
+
+- **🔧 Auth Setup**: 00:00 UTC (midnight) - ~30 min
+- **💨 Smoke Tests**: 01:30 UTC - ~15 min  
+- **👤 Single-User Tests**: 03:00 UTC - ~90 min
+- **👥 Multi-User Tests**: 04:30 UTC - ~60 min
+- **🚀 Full Regression**: Manual trigger only - ~120 min
+
+All scheduled tests complete by ~6:30 AM UTC, ensuring results are available before the workday begins.
+
 ## Prerequisites
 
 - Node.js 18+
@@ -163,7 +193,7 @@ npm run lint:fix          # Auto-fix ESLint issues
 
 ## CI/CD with GitHub Actions
 
-This project includes a GitHub Actions workflow that runs the full regression suite automatically on every push and pull request.
+This project includes multiple GitHub Actions workflows for comprehensive test automation with Allure reporting deployed to GitHub Pages.
 
 **📖 See [GitHub Actions Setup Guide](docs/GITHUB-ACTIONS-SETUP.md)** for:
 
@@ -172,12 +202,22 @@ This project includes a GitHub Actions workflow that runs the full regression su
 - How to view test results and artifacts
 - Troubleshooting CI/CD issues
 
-The workflow:
+### Workflow Features:
 
-- ✅ Runs complete regression suite (all 4 phases)
-- ✅ Uploads test reports, results, and Allure data as artifacts
+**5 Targeted Workflows:**
+- 🔧 **Auth Setup** - Validates authentication for all user roles
+- 💨 **Smoke Tests** - Quick verification of core functionality
+- 👤 **Single-User Tests** - Comprehensive role-isolated testing
+- 👥 **Multi-User Tests** - Multi-user interaction scenarios
+- 🚀 **Full Regression** - Complete test suite (manual trigger only)
+
+**Each workflow:**
+- ✅ Runs on push/pull request (except Full Regression)
+- ✅ Scheduled to run every 3 days overnight (6:30 AM UTC completion)
+- ✅ Generates and deploys Allure reports to GitHub Pages
+- ✅ Uploads test artifacts (reports, results, videos, traces)
 - ✅ Configurable via GitHub Secrets (credentials never in code)
-- ✅ Can be triggered manually for on-demand testing
+- ✅ Supports manual triggering for on-demand testing
 
 ## Project Structure
 

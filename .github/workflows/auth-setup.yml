@@ -1,10 +1,16 @@
-name: Full Regression Tests
+name: Auth Setup Tests
 on:
-  workflow_dispatch: # Manual trigger only
+  push:
+    branches: [main, master]
+  pull_request:
+    branches: [main, master]
+  schedule:
+    - cron: '0 0 */3 * *'  # Every 3 days at 00:00 UTC (midnight)
+  workflow_dispatch: # Allow manual trigger
 
 jobs:
   test:
-    timeout-minutes: 120
+    timeout-minutes: 30
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -19,8 +25,8 @@ jobs:
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps
 
-      - name: Run Playwright tests (Full Regression Suite)
-        run: npx playwright test
+      - name: Run Auth Setup Tests
+        run: npm run test:setup
         env:
           # Base URL
           QA_URL: ${{ secrets.QA_URL }}
@@ -75,14 +81,14 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./allure-report
-          destination_dir: ./
+          destination_dir: auth-setup
           keep_files: true
 
       - name: Upload Playwright Report
         uses: actions/upload-artifact@v4
         if: ${{ !cancelled() }}
         with:
-          name: playwright-report-full-regression
+          name: playwright-report-auth-setup
           path: playwright-report/
           retention-days: 30
 
@@ -90,7 +96,7 @@ jobs:
         uses: actions/upload-artifact@v4
         if: ${{ !cancelled() }}
         with:
-          name: test-results-full-regression
+          name: test-results-auth-setup
           path: test-results/
           retention-days: 30
 
@@ -98,6 +104,6 @@ jobs:
         uses: actions/upload-artifact@v4
         if: ${{ !cancelled() }}
         with:
-          name: allure-results-full-regression
+          name: allure-results-auth-setup
           path: allure-results/
           retention-days: 30
