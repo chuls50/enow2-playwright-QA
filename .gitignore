@@ -10,6 +10,11 @@ playwright/.auth/*.json
 # Playwright test results
 playwright-report/
 test-results/
+allure-results/
+allure-report/
+
+# Documentation Screenshots
+docs/latex/screenshots/
 
 # Node.js dependencies
 node_modules/

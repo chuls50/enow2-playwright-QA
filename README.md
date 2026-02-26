@@ -4,13 +4,15 @@ Automated end-to-end testing framework for eNow2 using Playwright.
 
 ## 📊 Test Results & Reports
 
-### 🎯 **Live Allure Reports:**
+### 🛡️ **Accessing Reports:**
 
-- **[Full Regression Report](https://chuls50.github.io/enow2-playwright-QA/)** - Complete test suite (manual trigger)
-- **[Auth Setup Report](https://chuls50.github.io/enow2-playwright-QA/auth-setup/)** - Authentication setup tests
-- **[Smoke Tests Report](https://chuls50.github.io/enow2-playwright-QA/smoke/)** - Quick verification tests
-- **[Single-User Tests Report](https://chuls50.github.io/enow2-playwright-QA/single-user/)** - Role-isolated tests
-- **[Multi-User Tests Report](https://chuls50.github.io/enow2-playwright-QA/multi-user/)** - Multi-user interaction tests
+For security and privacy, test reports are stored as private **GitHub Actions Artifacts**. To view the latest results:
+
+1. Click on one of the **Workflow Status** badges below.
+2. Select the most recent successful run.
+3. Scroll down to the **Artifacts** section at the bottom of the page.
+4. Download the `playwright-report-*` zip file.
+5. Extract and open `index.html` in your browser.
 
 ### 🚦 **Workflow Status:**
 

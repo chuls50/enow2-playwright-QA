@@ -83,20 +83,6 @@ export default defineConfig({
     ["html", { open: "never" }], // Set to 'never' for CI to avoid hanging
     ["junit", { outputFile: "test-results/results.xml" }],
     ["json", { outputFile: "test-results/results.json" }],
-    [
-      "allure-playwright",
-      {
-        detail: true,
-        outputFolder: "allure-results",
-        suiteTitle: true,
-        environmentInfo: {
-          framework: "Playwright",
-          environment: "QA",
-          baseUrl: "QA Environment",
-          browser: "Chrome Desktop",
-        },
-      },
-    ],
     // [
     //   '@alex_neo/playwright-azure-reporter',
     //   {
