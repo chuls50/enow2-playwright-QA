@@ -1,0 +1,17 @@
+✅ admin.json exists
+✅ admin-two.json exists
+✅ provider.json exists
+✅ provider-two.json exists
+✅ patient.json exists
+✅ patient-two.json exists
+✅ coordinator.json exists
+✅ coordinator-two.json exists
+✅ admin-coordinator.json exists
+✅ provider-coordinator.json exists
+✅ provider-admin.json exists
+✅ provider-admin-coordinator.json exists
+✅ device.json exists
+✅ device-two.json exists
+✅ super-admin.json exists
+✅ All authentication files verified: admin.json, admin-two.json, provider.json, provider-two.json, patient.json, patient-two.json, coordinator.json, coordinator-two.json, admin-coordinator.json, provider-coordinator.json, provider-admin.json, provider-admin-coordinator.json, device.json, device-two.json, super-admin.json
+✅ All authentication setup files verified successfully

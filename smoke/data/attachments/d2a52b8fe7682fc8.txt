@@ -1,0 +1,15 @@
+✅ admin storage state loads successfully
+✅ admin-two storage state loads successfully
+✅ provider storage state loads successfully
+✅ provider-two storage state loads successfully
+✅ patient storage state loads successfully
+✅ patient-two storage state loads successfully
+✅ coordinator storage state loads successfully
+✅ coordinator-two storage state loads successfully
+✅ admin-coordinator storage state loads successfully
+✅ provider-coordinator storage state loads successfully
+✅ provider-admin storage state loads successfully
+✅ provider-admin-coordinator storage state loads successfully
+✅ device storage state loads successfully
+✅ device-two storage state loads successfully
+✅ super-admin storage state loads successfully
