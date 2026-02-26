@@ -11,6 +11,47 @@ jobs:
   test:
     timeout-minutes: 120
     runs-on: ubuntu-latest
+    env:
+      # Base URL
+      QA_URL: ${{ secrets.QA_URL }}
+
+      # Admin credentials
+      QA_ADMIN_ONE_USERNAME: ${{ secrets.QA_ADMIN_ONE_USERNAME }}
+      QA_ADMIN_TWO_USERNAME: ${{ secrets.QA_ADMIN_TWO_USERNAME }}
+      QA_ADMIN_PASSWORD: ${{ secrets.QA_ADMIN_PASSWORD }}
+
+      # Provider credentials
+      QA_PROVIDER_ONE_USERNAME: ${{ secrets.QA_PROVIDER_ONE_USERNAME }}
+      QA_PROVIDER_TWO_USERNAME: ${{ secrets.QA_PROVIDER_TWO_USERNAME }}
+      QA_PROVIDER_PASSWORD: ${{ secrets.QA_PROVIDER_PASSWORD }}
+
+      # Patient credentials
+      QA_PATIENT_ONE_USERNAME: ${{ secrets.QA_PATIENT_ONE_USERNAME }}
+      QA_PATIENT_TWO_USERNAME: ${{ secrets.QA_PATIENT_TWO_USERNAME }}
+      QA_PATIENT_PASSWORD: ${{ secrets.QA_PATIENT_PASSWORD }}
+
+      # Coordinator credentials
+      QA_COORDINATOR_ONE_USERNAME: ${{ secrets.QA_COORDINATOR_ONE_USERNAME }}
+      QA_COORDINATOR_TWO_USERNAME: ${{ secrets.QA_COORDINATOR_TWO_USERNAME }}
+      QA_COORDINATOR_PASSWORD: ${{ secrets.QA_COORDINATOR_PASSWORD }}
+
+      # Device IDs
+      QA_DEVICE_ONE_ID: ${{ secrets.QA_DEVICE_ONE_ID }}
+      QA_DEVICE_TWO_ID: ${{ secrets.QA_DEVICE_TWO_ID }}
+
+      # Combined role credentials
+      QA_ADMINCOORDINATOR_USERNAME: ${{ secrets.QA_ADMINCOORDINATOR_USERNAME }}
+      QA_ADMINCOORDINATOR_PASSWORD: ${{ secrets.QA_ADMINCOORDINATOR_PASSWORD }}
+      QA_PROVIDERADMIN_USERNAME: ${{ secrets.QA_PROVIDERADMIN_USERNAME }}
+      QA_PROVIDERADMIN_PASSWORD: ${{ secrets.QA_PROVIDERADMIN_PASSWORD }}
+      QA_PROVIDERCOORDINATOR_USERNAME: ${{ secrets.QA_PROVIDERCOORDINATOR_USERNAME }}
+      QA_PROVIDERCOORDINATOR_PASSWORD: ${{ secrets.QA_PROVIDERCOORDINATOR_PASSWORD }}
+      QA_PROVIDERADMINCOORDINATOR_USERNAME: ${{ secrets.QA_PROVIDERADMINCOORDINATOR_USERNAME }}
+      QA_PROVIDERADMINCOORDINATOR_PASSWORD: ${{ secrets.QA_PROVIDERADMINCOORDINATOR_PASSWORD }}
+
+      # Super Admin credentials
+      QA_SUPERADMIN_USERNAME: ${{ secrets.QA_SUPERADMIN_USERNAME }}
+      QA_SUPERADMIN_PASSWORD: ${{ secrets.QA_SUPERADMIN_PASSWORD }}
     steps:
       - uses: actions/checkout@v4
 
@@ -26,47 +67,6 @@ jobs:
 
       - name: Run Playwright tests (Full Regression Suite)
         run: npx playwright test
-        env:
-          # Base URL
-          QA_URL: ${{ secrets.QA_URL }}
-
-          # Admin credentials
-          QA_ADMIN_ONE_USERNAME: ${{ secrets.QA_ADMIN_ONE_USERNAME }}
-          QA_ADMIN_TWO_USERNAME: ${{ secrets.QA_ADMIN_TWO_USERNAME }}
-          QA_ADMIN_PASSWORD: ${{ secrets.QA_ADMIN_PASSWORD }}
-
-          # Provider credentials
-          QA_PROVIDER_ONE_USERNAME: ${{ secrets.QA_PROVIDER_ONE_USERNAME }}
-          QA_PROVIDER_TWO_USERNAME: ${{ secrets.QA_PROVIDER_TWO_USERNAME }}
-          QA_PROVIDER_PASSWORD: ${{ secrets.QA_PROVIDER_PASSWORD }}
-
-          # Patient credentials
-          QA_PATIENT_ONE_USERNAME: ${{ secrets.QA_PATIENT_ONE_USERNAME }}
-          QA_PATIENT_TWO_USERNAME: ${{ secrets.QA_PATIENT_TWO_USERNAME }}
-          QA_PATIENT_PASSWORD: ${{ secrets.QA_PATIENT_PASSWORD }}
-
-          # Coordinator credentials
-          QA_COORDINATOR_ONE_USERNAME: ${{ secrets.QA_COORDINATOR_ONE_USERNAME }}
-          QA_COORDINATOR_TWO_USERNAME: ${{ secrets.QA_COORDINATOR_TWO_USERNAME }}
-          QA_COORDINATOR_PASSWORD: ${{ secrets.QA_COORDINATOR_PASSWORD }}
-
-          # Device IDs
-          QA_DEVICE_ONE_ID: ${{ secrets.QA_DEVICE_ONE_ID }}
-          QA_DEVICE_TWO_ID: ${{ secrets.QA_DEVICE_TWO_ID }}
-
-          # Combined role credentials
-          QA_ADMINCOORDINATOR_USERNAME: ${{ secrets.QA_ADMINCOORDINATOR_USERNAME }}
-          QA_ADMINCOORDINATOR_PASSWORD: ${{ secrets.QA_ADMINCOORDINATOR_PASSWORD }}
-          QA_PROVIDERADMIN_USERNAME: ${{ secrets.QA_PROVIDERADMIN_USERNAME }}
-          QA_PROVIDERADMIN_PASSWORD: ${{ secrets.QA_PROVIDERADMIN_PASSWORD }}
-          QA_PROVIDERCOORDINATOR_USERNAME: ${{ secrets.QA_PROVIDERCOORDINATOR_USERNAME }}
-          QA_PROVIDERCOORDINATOR_PASSWORD: ${{ secrets.QA_PROVIDERCOORDINATOR_PASSWORD }}
-          QA_PROVIDERADMINCOORDINATOR_USERNAME: ${{ secrets.QA_PROVIDERADMINCOORDINATOR_USERNAME }}
-          QA_PROVIDERADMINCOORDINATOR_PASSWORD: ${{ secrets.QA_PROVIDERADMINCOORDINATOR_PASSWORD }}
-
-          # Super Admin credentials
-          QA_SUPERADMIN_USERNAME: ${{ secrets.QA_SUPERADMIN_USERNAME }}
-          QA_SUPERADMIN_PASSWORD: ${{ secrets.QA_SUPERADMIN_PASSWORD }}
 
       - name: Generate Allure Report
         if: ${{ !cancelled() }}
