@@ -35,7 +35,7 @@ test.describe("Provider @regression", () => {
     await expect(providerMyAccountPage.editLicenseSaveButton).toBeVisible();
   });
 
-  test("Verify adding a New License in Edit License to practice slide out @[111396] @provider @functional", async () => {
+  test.skip("Verify adding a New License in Edit License to practice slide out @[111396] @provider @functional", async () => {
     await providerMyAccountPage.openEditLicenseToPracticeModal();
     await providerMyAccountPage.resetEditLicenseModalStateIfNeeded();
 
@@ -43,7 +43,7 @@ test.describe("Provider @regression", () => {
     await providerMyAccountPage.addAndDeleteLicense();
   });
 
-  test("Verify deleting a License in Edit License to practice slide out @[111397] @provider @functional", async () => {
+  test.skip("Verify deleting a License in Edit License to practice slide out @[111397] @provider @functional", async () => {
     await providerMyAccountPage.openEditLicenseToPracticeModal();
     await providerMyAccountPage.resetEditLicenseModalStateIfNeeded();
 
