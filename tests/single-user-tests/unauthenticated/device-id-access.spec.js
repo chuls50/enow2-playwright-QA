@@ -5,7 +5,7 @@ import { LoginPage } from "../../models/pages/shared/login.page.js";
 
 const TEST_DATA = {
   // Device ID test data
-  VALID_DEVICE_ID: process.env.QA_DEVICE_THREE_ID,
+  VALID_DEVICE_ID: "33333",
   INVALID_DEVICE_ID: "12345678",
   INVALID_DEVICE_ID_SHORT: "9",
   INVALID_SPECIAL_CHARS: "!@#$%^&*",
