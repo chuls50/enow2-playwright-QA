@@ -1,0 +1,1 @@
+✅ Provider+Admin+Coordinator authentication state saved. (QA Environment)
