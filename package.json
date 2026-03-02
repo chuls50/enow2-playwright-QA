@@ -26,6 +26,7 @@
   "license": "ISC",
   "type": "module",
   "devDependencies": {
+    "@alex_neo/playwright-azure-reporter": "^1.19.1",
     "@playwright/mcp": "^0.0.68",
     "@playwright/test": "^1.58.2",
     "@types/node": "^25.3.0",

@@ -1,0 +1,40 @@
+{
+  "name": "enow2-doc-workflow-agent",
+  "version": "1.0.0",
+  "description": "Autonomous documentation workflow agent for eNow2 Playwright QA project",
+  "type": "module",
+  "main": "agent.js",
+  "scripts": {
+    "test-mcp": "node test-mcp.js",
+    "agent:gap": "node agent.js --mode=gap",
+    "agent:full": "node agent.js --mode=full",
+    "agent:dry-run": "node agent.js --mode=gap --dry-run",
+    "agent:admin": "node agent.js --mode=role-focused --role=admin",
+    "agent:provider": "node agent.js --mode=role-focused --role=provider",
+    "agent:patient": "node agent.js --mode=role-focused --role=patient",
+    "agent:coordinator": "node agent.js --mode=role-focused --role=coordinator",
+    "agent:device": "node agent.js --mode=role-focused --role=device",
+    "agent:refresh": "node agent.js --mode=refresh --max-duration=30"
+  },
+  "dependencies": {
+    "js-yaml": "^4.1.0"
+  },
+  "devDependencies": {},
+  "keywords": [
+    "playwright",
+    "documentation",
+    "automation",
+    "mcp",
+    "telehealth",
+    "workflow"
+  ],
+  "author": "eNow2 QA Team",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "file:///../../.git"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  }
+}

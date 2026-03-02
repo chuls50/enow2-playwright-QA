@@ -84,60 +84,34 @@ export default defineConfig({
     ["junit", { outputFile: "test-results/results.xml" }],
     ["json", { outputFile: "test-results/results.json" }],
     // [
-    //   '@alex_neo/playwright-azure-reporter',
+    //   "@alex_neo/playwright-azure-reporter",
     //   {
-    //     orgUrl: 'https://dev.azure.com/globalmeddev',
+    //     orgUrl: "https://dev.azure.com/globalmeddev",
     //     token: process.env.AZURE_TOKEN,
-    //     planId: 114816,
-    //     projectName: 'eNow2',
-    //     environment: 'QA',
+    //     planId: 127655,
+    //     projectName: "eNow2",
+    //     environment: "QA",
     //     logging: true,
-    //     testRunTitle: 'Playwright Test Run',
-    //     publishTestResultsMode: 'testRun',
+    //     testRunTitle: "Playwright Test Run",
+    //     publishTestResultsMode: "testRun",
     //     uploadAttachments: true,
-    //     attachmentsType: ['screenshot', 'video', 'trace'],
+    //     attachmentsType: ["screenshot", "video", "trace"],
     //     testCaseIdMatcher: /@\[(\d+)\]/,
     //     testPointMapper: async (testCase, testPoints) => {
-    //       // Get the project name - testCase is the Playwright TestCase object
-    //       const projectName = testCase.parent?.project()?.name || '';
+    //       // Map all tests to "Browser Web" configuration since all projects use Desktop Chrome
+    //       const filtered = testPoints.filter((testPoint) => testPoint.configuration?.name?.includes("Browser Web"));
 
-    //       // Define configuration mappings based on project name patterns
-    //       let configFilter;
-
-    //       // Check for Chrome desktop projects (matches 'chrome-desktop')
-    //       if (projectName === 'chrome-desktop' || (projectName.includes('chrome') && projectName.includes('desktop'))) {
-    //         configFilter = 'Browser Web';
-    //       }
-    //       // Check for Chrome mobile projects
-    //       else if (projectName.includes('chrome-mobile') || projectName.includes('chrome') && projectName.includes('mobile')) {
-    //         configFilter = 'Browser Chrome Mobile';
-    //       }
-    //       // Check for Safari mobile projects
-    //       else if (projectName.includes('safari-mobile') || projectName.includes('safari') && projectName.includes('mobile')) {
-    //         configFilter = 'Browser Safari Mobile';
-    //       }
-    //       // Default case for any other project (including auth setup projects)
-    //       else {
-    //         // Return the first available test point if no specific configuration matches
-    //         return testPoints.length > 0 ? [testPoints[0]] : [];
-    //       }
-
-    //       // Filter test points based on the configuration name
-    //       const filtered = testPoints.filter((testPoint) =>
-    //         testPoint.configuration?.name?.includes(configFilter)
-    //       );
-
-    //       // Return filtered results, or first test point as fallback
-    //       return filtered.length > 0 ? filtered : (testPoints.length > 0 ? [testPoints[0]] : []);
+    //       // Return filtered results, or first test point as fallback if Browser Web not found
+    //       return filtered.length > 0 ? filtered : testPoints.length > 0 ? [testPoints[0]] : [];
     //     },
     //     testRunConfig: {
     //       owner: {
-    //         displayName: 'Cody Huls',
+    //         displayName: "Cody Huls",
     //       },
-    //       comment: 'Playwright Test Run',
+    //       comment: "Playwright Test Run - Desktop Chrome Browser",
     //     },
     //   },
-    // ]
+    // ],
   ],
 
   // Project configurations

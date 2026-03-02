@@ -1,6 +1,6 @@
 import { BasePage } from "../../base-page.js";
 
-export class InstitutionSettingsInsurancePage extends BasePage {
+export class AdminInstitutionSettingsInsurancePage extends BasePage {
   constructor(page) {
     super(page);
 

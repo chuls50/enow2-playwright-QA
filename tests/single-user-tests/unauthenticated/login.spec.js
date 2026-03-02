@@ -251,8 +251,12 @@ test.describe("Unauthenticated @regression", () => {
     await expect(loginPage.loginHeading).toBeVisible();
   });
 
-  test.skip('Verify "Register as Patient" onboarding flow Account Creation from Login Page @[122336] @unauthenticated @functional @email', async () => {
-    // TODO: Implement patient registration flow test
-    // Note: This test requires email verification which is currently disabled
+  test.skip('Verify "Register as a Patient" link visibility when White Label is ON @[126025] @unauthenticated @ui', async ({ page }) => {
+    // This test is skipped because the "Register as a Patient" link is currently not visible in the UI, because we dont have White Label enabled in QA env.
+  });
+
+  test("[Negative] Register as Patient link is hidden when White Label is OFF @[126045] @unauthenticated @ui", async ({ page }) => {
+    const registerLink = page.getByRole("link", { name: "Register as a Patient" });
+    await expect(registerLink).not.toBeVisible();
   });
 });
