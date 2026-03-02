@@ -24,7 +24,7 @@ export class InstitutionSettingsInsurancePage extends BasePage {
     this.insuranceInput = page.locator("div").filter({ hasText: /^Add$/ }).getByPlaceholder("Example");
     this.copayAmount = page.getByText("Co-pay amount");
     this.copayInput = page.getByRole("textbox", { name: "0" });
-    this.deleteButton = page.getByRole("button", { name: "Delete" });
+    this.deleteButton = page.getByRole("button", { name: "Delete" }).first();
     this.addInsuranceButton = page.getByRole("button", { name: "Plus Add" });
 
     // Payment setup
@@ -79,9 +79,6 @@ export class InstitutionSettingsInsurancePage extends BasePage {
     // Error messages
     this.errorMessage = page.getByText("This field is required - please provide a value").first();
     this.errorMessageToast = page.getByText("Please fix the errors in the form.").first();
-
-    // Success messages
-    this.successMessage = page.getByText("SuccessInfo updated");
   }
 
   async navigateToInsuranceSettings() {

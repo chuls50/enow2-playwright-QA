@@ -17,12 +17,12 @@ export class InstitutionSettingsProfilePage extends BasePage {
     this.nameInput = page.getByRole("textbox", { name: "Example Name" });
     this.registrationLinkLabel = page.getByText("Patient Registration Link");
     this.registrationLink = page.getByRole("link", {
-      name: "https://xj9.sandbox-encounterservices.com/signup/INSFDJUBZOIFOQCIIAUWXPQ",
+      name: "https://portal.qa-encounterservices.com/signup/INSOVOKTTWCHHQRXPZTOHIC",
     });
     this.registrationLinkCopyButton = page.getByRole("button", { name: "Copy link" }).first();
     this.deviceIDAccessLinkLabel = page.getByText("Device ID Access Link");
     this.deviceIDAccessLink = page.getByRole("link", {
-      name: "https://xj9.sandbox-encounterservices.com/login/device",
+      name: "https://portal.qa-encounterservices.com/login/device",
     });
     this.deviceIDAccessLinkCopyButton = page.getByRole("button", { name: "Copy link" }).nth(1);
     // Consolidated success message for both registration link and device ID link copy actions
@@ -48,22 +48,6 @@ export class InstitutionSettingsProfilePage extends BasePage {
     this.institutionAddressCountryDropdown = page.getByTestId("custom-select-item-wrapper").first();
     this.institutionAddressStateLabel = page.getByText("State").first();
     this.institutionAddressStateDropdown = page.getByTestId("custom-select-item-wrapper").nth(1);
-
-    // Institution Address Dropdown Selections (working locators)
-    this.countryDropdownAfghanistan = page
-      .locator("div")
-      .filter({ hasText: /^CountryAfghanistan$/ })
-      .getByTestId("custom-select-item-wrapper");
-    this.countryDropdownAlbania = page
-      .locator("div")
-      .filter({ hasText: /^CountryAlbania$/ })
-      .getByTestId("custom-select-item-wrapper");
-    this.stateDropdownAfterCountrySelection = page.getByTestId("custom-select-item-wrapper").nth(2);
-    this.afghanistanCountryOption = page.getByTestId("custom-dropdown-item-Afghanistan");
-    this.albaniaCountryOption = page.getByTestId("custom-dropdown-item-Albania");
-    this.badakhshanStateOption = page.getByTestId("custom-dropdown-item-Badakhshan");
-    this.beratStateOption = page.getByTestId("custom-dropdown-item-Berat");
-    this.diberStateOption = page.getByTestId("custom-dropdown-item-Diber");
 
     // ========================================
     // POC DETAILS SECTION
@@ -91,14 +75,11 @@ export class InstitutionSettingsProfilePage extends BasePage {
     this.pocCityLabel = page.getByText("City").nth(1);
     this.pocCityInput = page.locator('input[name="pocSettings\\.city"]');
     this.pocCountryLabel = page.getByText("Country").nth(1);
-    this.pocCountryDropdown = page
-      .locator("div")
-      .filter({ hasText: /^CountryUnited States of America$/ })
-      .getByTestId("custom-select-item-wrapper");
+    this.pocCountryDropdown = page.getByTestId("custom-select-item-wrapper").nth(3);
     this.pocCountryDropdownSelection = page
       .getByTestId("custom-dropdown-item-United States of America")
       .getByText("United States of America");
-    this.pocStateLabel = page.getByText("State").nth(2);
+    this.pocStateLabel = page.getByText("State").nth(3);
     this.pocStateDropdown = page.getByTestId("custom-select-item-wrapper").nth(4);
     this.pocStateDropdownSelection = page.getByTestId("custom-dropdown-item-Arizona");
 
@@ -163,14 +144,14 @@ export class InstitutionSettingsProfilePage extends BasePage {
   // ========================================
   // WORKFLOW METHODS
   // ========================================
-  async fillAndSavePOCDetails(details) {
-    await this.fillPOCDetails(details, true);
-    await this.selectPOCCountryAndState();
-    await this.saveChangesButton.click();
-  }
+  // async fillAndSavePOCDetails(details) {
+  //   await this.fillPOCDetails(details, true);
+  //   await this.selectPOCCountryAndState();
+  //   await this.saveChangesButton.click();
+  // }
 
-  async saveChangesAndWaitForSuccess() {
-    await this.saveChangesButton.click();
-    await this.successMessage.waitFor({ state: "visible" });
-  }
+  // async saveChangesAndWaitForSuccess() {
+  //   await this.saveChangesButton.click();
+  //   await this.successMessage.waitFor({ state: "visible" });
+  // }
 }
