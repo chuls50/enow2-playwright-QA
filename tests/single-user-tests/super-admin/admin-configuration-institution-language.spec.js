@@ -1,14 +1,14 @@
 import { test, expect } from "@playwright/test";
-import { InstitutionSettingsProfilePage } from "../../models/pages/admin/institution-settings-profile.page.js";
+import { AdminInstitutionSettingsProfilePage } from "../../models/pages/admin/institution-settings-profile.page.js";
 import { useRole, ROLES } from "../../utils/auth-helpers.js";
 
 test.describe("Super Admin @regression", () => {
   test.use(useRole(ROLES.SUPER_ADMIN));
-  let institutionSettingsProfilePage;
+  let adminInstitutionSettingsProfilePage;
 
   test.beforeEach(async ({ page }) => {
-    institutionSettingsProfilePage = new InstitutionSettingsProfilePage(page);
-    await institutionSettingsProfilePage.navigateToInstitutionSettingsProfile();
+    adminInstitutionSettingsProfilePage = new AdminInstitutionSettingsProfilePage(page);
+    await adminInstitutionSettingsProfilePage.navigateToInstitutionSettingsProfile();
   });
 
   test("Verify Institution Language selection dropdown functionality @[118727] @super-admin @functional", async ({ page }) => {

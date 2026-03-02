@@ -1,5 +1,5 @@
 import { test, expect } from "@playwright/test";
-import { InstitutionSettingsProfilePage } from "../../models/pages/admin/institution-settings-profile.page.js";
+import { AdminInstitutionSettingsProfilePage } from "../../models/pages/admin/institution-settings-profile.page.js";
 import { useRole, ROLES } from "../../utils/auth-helpers.js";
 
 // Admin Institution Profile - Total tests 10 (including 1 skipped)
@@ -58,106 +58,106 @@ const TEST_DATA = {
 
 test.describe("Admin @regression", () => {
   test.use(useRole(ROLES.ADMIN));
-  let institutionSettingsProfilePage;
+  let adminInstitutionSettingsProfilePage;
 
   test.beforeEach(async ({ page }) => {
-    institutionSettingsProfilePage = new InstitutionSettingsProfilePage(page);
-    await institutionSettingsProfilePage.navigateToInstitutionSettingsProfile();
+    adminInstitutionSettingsProfilePage = new AdminInstitutionSettingsProfilePage(page);
+    await adminInstitutionSettingsProfilePage.navigateToInstitutionSettingsProfile();
   });
 
   test('Verify content of "Profile" Tab on "Institution settings" Page @[111328] @admin @ui', async () => {
     // Verify institution settings section elements
-    await expect(institutionSettingsProfilePage.institutionSettingsHeading).toBeVisible();
-    await expect(institutionSettingsProfilePage.nameLabel).toBeVisible();
-    await expect(institutionSettingsProfilePage.nameInput).toBeVisible();
+    await expect(adminInstitutionSettingsProfilePage.institutionSettingsHeading).toBeVisible();
+    await expect(adminInstitutionSettingsProfilePage.nameLabel).toBeVisible();
+    await expect(adminInstitutionSettingsProfilePage.nameInput).toBeVisible();
 
     // Verify registration and device ID access links
-    await expect(institutionSettingsProfilePage.registrationLinkLabel).toBeVisible();
-    await expect(institutionSettingsProfilePage.registrationLink).toBeVisible();
-    await expect(institutionSettingsProfilePage.registrationLinkCopyButton).toBeVisible();
-    await expect(institutionSettingsProfilePage.deviceIDAccessLinkLabel).toBeVisible();
-    await expect(institutionSettingsProfilePage.deviceIDAccessLink).toBeVisible();
-    await expect(institutionSettingsProfilePage.deviceIDAccessLinkCopyButton).toBeVisible();
+    await expect(adminInstitutionSettingsProfilePage.registrationLinkLabel).toBeVisible();
+    await expect(adminInstitutionSettingsProfilePage.registrationLink).toBeVisible();
+    await expect(adminInstitutionSettingsProfilePage.registrationLinkCopyButton).toBeVisible();
+    await expect(adminInstitutionSettingsProfilePage.deviceIDAccessLinkLabel).toBeVisible();
+    await expect(adminInstitutionSettingsProfilePage.deviceIDAccessLink).toBeVisible();
+    await expect(adminInstitutionSettingsProfilePage.deviceIDAccessLinkCopyButton).toBeVisible();
 
     // Verify phone number configuration
-    await expect(institutionSettingsProfilePage.phoneNumberLabel).toBeVisible();
-    await expect(institutionSettingsProfilePage.phoneNumberInput).toBeVisible();
-    await expect(institutionSettingsProfilePage.phoneNumberDropdown).toBeVisible();
+    await expect(adminInstitutionSettingsProfilePage.phoneNumberLabel).toBeVisible();
+    await expect(adminInstitutionSettingsProfilePage.phoneNumberInput).toBeVisible();
+    await expect(adminInstitutionSettingsProfilePage.phoneNumberDropdown).toBeVisible();
 
     // Verify institution address section elements
-    await expect(institutionSettingsProfilePage.institutionAddressHeading).toBeVisible();
-    await expect(institutionSettingsProfilePage.institutionAddressInput).toBeVisible();
-    await expect(institutionSettingsProfilePage.institutionAptSuiteEtcLabel).toBeVisible();
-    await expect(institutionSettingsProfilePage.institutionAptSuiteEtcInput).toBeVisible();
-    await expect(institutionSettingsProfilePage.institutionAddressZipCodeLabel).toBeVisible();
-    await expect(institutionSettingsProfilePage.institutionAddressZipCodeInput).toBeVisible();
-    await expect(institutionSettingsProfilePage.institutionAddressCityLabel).toBeVisible();
-    await expect(institutionSettingsProfilePage.institutionAddressCityInput).toBeVisible();
-    await expect(institutionSettingsProfilePage.institutionAddressCountryLabel).toBeVisible();
-    await expect(institutionSettingsProfilePage.institutionAddressCountryDropdown).toBeVisible();
-    await expect(institutionSettingsProfilePage.institutionAddressStateLabel).toBeVisible();
-    await expect(institutionSettingsProfilePage.institutionAddressStateDropdown).toBeVisible();
+    await expect(adminInstitutionSettingsProfilePage.institutionAddressHeading).toBeVisible();
+    await expect(adminInstitutionSettingsProfilePage.institutionAddressInput).toBeVisible();
+    await expect(adminInstitutionSettingsProfilePage.institutionAptSuiteEtcLabel).toBeVisible();
+    await expect(adminInstitutionSettingsProfilePage.institutionAptSuiteEtcInput).toBeVisible();
+    await expect(adminInstitutionSettingsProfilePage.institutionAddressZipCodeLabel).toBeVisible();
+    await expect(adminInstitutionSettingsProfilePage.institutionAddressZipCodeInput).toBeVisible();
+    await expect(adminInstitutionSettingsProfilePage.institutionAddressCityLabel).toBeVisible();
+    await expect(adminInstitutionSettingsProfilePage.institutionAddressCityInput).toBeVisible();
+    await expect(adminInstitutionSettingsProfilePage.institutionAddressCountryLabel).toBeVisible();
+    await expect(adminInstitutionSettingsProfilePage.institutionAddressCountryDropdown).toBeVisible();
+    await expect(adminInstitutionSettingsProfilePage.institutionAddressStateLabel).toBeVisible();
+    await expect(adminInstitutionSettingsProfilePage.institutionAddressStateDropdown).toBeVisible();
 
     // Verify POC details section elements
-    await expect(institutionSettingsProfilePage.pocDetailsHeading).toBeVisible();
-    await expect(institutionSettingsProfilePage.pocNameLabel).toBeVisible();
-    await expect(institutionSettingsProfilePage.pocNameInput).toBeVisible();
-    await expect(institutionSettingsProfilePage.pocTitleLabel).toBeVisible();
-    await expect(institutionSettingsProfilePage.pocTitleInput).toBeVisible();
-    await expect(institutionSettingsProfilePage.pocPhoneNumberLabel).toBeVisible();
-    await expect(institutionSettingsProfilePage.pocPhoneNumberInput).toBeVisible();
-    await expect(institutionSettingsProfilePage.pocPhoneNumberDropdown).toBeVisible();
-    await expect(institutionSettingsProfilePage.pocEmailLabel).toBeVisible();
-    await expect(institutionSettingsProfilePage.pocEmailInput).toBeVisible();
+    await expect(adminInstitutionSettingsProfilePage.pocDetailsHeading).toBeVisible();
+    await expect(adminInstitutionSettingsProfilePage.pocNameLabel).toBeVisible();
+    await expect(adminInstitutionSettingsProfilePage.pocNameInput).toBeVisible();
+    await expect(adminInstitutionSettingsProfilePage.pocTitleLabel).toBeVisible();
+    await expect(adminInstitutionSettingsProfilePage.pocTitleInput).toBeVisible();
+    await expect(adminInstitutionSettingsProfilePage.pocPhoneNumberLabel).toBeVisible();
+    await expect(adminInstitutionSettingsProfilePage.pocPhoneNumberInput).toBeVisible();
+    await expect(adminInstitutionSettingsProfilePage.pocPhoneNumberDropdown).toBeVisible();
+    await expect(adminInstitutionSettingsProfilePage.pocEmailLabel).toBeVisible();
+    await expect(adminInstitutionSettingsProfilePage.pocEmailInput).toBeVisible();
 
     // Verify POC address section elements
-    await expect(institutionSettingsProfilePage.pocAddressHeading).toBeVisible();
-    await expect(institutionSettingsProfilePage.pocAddressInput).toBeVisible();
-    await expect(institutionSettingsProfilePage.pocAptSuiteEtcLabel).toBeVisible();
-    await expect(institutionSettingsProfilePage.pocAptSuiteEtcInput).toBeVisible();
-    await expect(institutionSettingsProfilePage.pocZipCodeLabel).toBeVisible();
-    await expect(institutionSettingsProfilePage.pocZipCodeInput).toBeVisible();
-    await expect(institutionSettingsProfilePage.pocCityLabel).toBeVisible();
-    await expect(institutionSettingsProfilePage.pocCityInput).toBeVisible();
-    await expect(institutionSettingsProfilePage.pocCountryLabel).toBeVisible();
-    await expect(institutionSettingsProfilePage.pocCountryDropdown).toBeVisible();
-    await expect(institutionSettingsProfilePage.pocStateLabel).toBeVisible();
-    await expect(institutionSettingsProfilePage.pocStateDropdown).toBeVisible();
+    await expect(adminInstitutionSettingsProfilePage.pocAddressHeading).toBeVisible();
+    await expect(adminInstitutionSettingsProfilePage.pocAddressInput).toBeVisible();
+    await expect(adminInstitutionSettingsProfilePage.pocAptSuiteEtcLabel).toBeVisible();
+    await expect(adminInstitutionSettingsProfilePage.pocAptSuiteEtcInput).toBeVisible();
+    await expect(adminInstitutionSettingsProfilePage.pocZipCodeLabel).toBeVisible();
+    await expect(adminInstitutionSettingsProfilePage.pocZipCodeInput).toBeVisible();
+    await expect(adminInstitutionSettingsProfilePage.pocCityLabel).toBeVisible();
+    await expect(adminInstitutionSettingsProfilePage.pocCityInput).toBeVisible();
+    await expect(adminInstitutionSettingsProfilePage.pocCountryLabel).toBeVisible();
+    await expect(adminInstitutionSettingsProfilePage.pocCountryDropdown).toBeVisible();
+    await expect(adminInstitutionSettingsProfilePage.pocStateLabel).toBeVisible();
+    await expect(adminInstitutionSettingsProfilePage.pocStateDropdown).toBeVisible();
 
     // Verify action buttons are present and properly disabled
-    await expect(institutionSettingsProfilePage.saveChangesButton).toBeVisible();
-    await expect(institutionSettingsProfilePage.saveChangesButton).toBeDisabled();
-    await expect(institutionSettingsProfilePage.cancelButton).toBeVisible();
-    await expect(institutionSettingsProfilePage.cancelButton).toBeDisabled();
+    await expect(adminInstitutionSettingsProfilePage.saveChangesButton).toBeVisible();
+    await expect(adminInstitutionSettingsProfilePage.saveChangesButton).toBeDisabled();
+    await expect(adminInstitutionSettingsProfilePage.cancelButton).toBeVisible();
+    await expect(adminInstitutionSettingsProfilePage.cancelButton).toBeDisabled();
   });
 
   test('Verify Editing and Saving Institution Information on "Profile" tab @[111329] @admin @functional', async () => {
     // First edit - basic address fields with Afghanistan/Badakhshan
-    await institutionSettingsProfilePage.institutionAddressInput.click();
-    await institutionSettingsProfilePage.institutionAddressInput.fill(TEST_DATA.INSTITUTION.ADDRESS);
-    await institutionSettingsProfilePage.institutionAddressZipCodeInput.click();
-    await institutionSettingsProfilePage.institutionAddressZipCodeInput.fill(TEST_DATA.INSTITUTION.ZIP);
-    await institutionSettingsProfilePage.institutionAddressCityInput.click();
-    await institutionSettingsProfilePage.institutionAddressCityInput.fill(TEST_DATA.INSTITUTION.CITY);
-    await expect(institutionSettingsProfilePage.saveChangesButton).toBeEnabled();
-    await institutionSettingsProfilePage.saveChangesButton.click();
-    await expect(institutionSettingsProfilePage.successMessage).toBeVisible();
+    await adminInstitutionSettingsProfilePage.institutionAddressInput.click();
+    await adminInstitutionSettingsProfilePage.institutionAddressInput.fill(TEST_DATA.INSTITUTION.ADDRESS);
+    await adminInstitutionSettingsProfilePage.institutionAddressZipCodeInput.click();
+    await adminInstitutionSettingsProfilePage.institutionAddressZipCodeInput.fill(TEST_DATA.INSTITUTION.ZIP);
+    await adminInstitutionSettingsProfilePage.institutionAddressCityInput.click();
+    await adminInstitutionSettingsProfilePage.institutionAddressCityInput.fill(TEST_DATA.INSTITUTION.CITY);
+    await expect(adminInstitutionSettingsProfilePage.saveChangesButton).toBeEnabled();
+    await adminInstitutionSettingsProfilePage.saveChangesButton.click();
+    await expect(adminInstitutionSettingsProfilePage.successMessage).toBeVisible();
 
     // Second edit - different address fields with Albania/Berat
-    await institutionSettingsProfilePage.institutionAddressInput.click();
-    await institutionSettingsProfilePage.institutionAddressInput.fill(TEST_DATA.INSTITUTION.ADDRESS_2);
-    await institutionSettingsProfilePage.institutionAddressZipCodeInput.click();
-    await institutionSettingsProfilePage.institutionAddressZipCodeInput.fill(TEST_DATA.INSTITUTION.ZIP_2);
-    await institutionSettingsProfilePage.institutionAddressCityInput.click();
-    await institutionSettingsProfilePage.institutionAddressCityInput.fill(TEST_DATA.INSTITUTION.CITY_2);
-    await expect(institutionSettingsProfilePage.saveChangesButton).toBeEnabled();
-    await institutionSettingsProfilePage.saveChangesButton.click();
-    await expect(institutionSettingsProfilePage.successMessage).toBeVisible();
+    await adminInstitutionSettingsProfilePage.institutionAddressInput.click();
+    await adminInstitutionSettingsProfilePage.institutionAddressInput.fill(TEST_DATA.INSTITUTION.ADDRESS_2);
+    await adminInstitutionSettingsProfilePage.institutionAddressZipCodeInput.click();
+    await adminInstitutionSettingsProfilePage.institutionAddressZipCodeInput.fill(TEST_DATA.INSTITUTION.ZIP_2);
+    await adminInstitutionSettingsProfilePage.institutionAddressCityInput.click();
+    await adminInstitutionSettingsProfilePage.institutionAddressCityInput.fill(TEST_DATA.INSTITUTION.CITY_2);
+    await expect(adminInstitutionSettingsProfilePage.saveChangesButton).toBeEnabled();
+    await adminInstitutionSettingsProfilePage.saveChangesButton.click();
+    await expect(adminInstitutionSettingsProfilePage.successMessage).toBeVisible();
   });
 
   test("Verify Editing and Saving POC (Point of Contact) Details on Profile tab @[112378] @admin @functional", async () => {
     // Clear existing POC details to start with clean state
-    await institutionSettingsProfilePage.clearPOCDetails();
+    await adminInstitutionSettingsProfilePage.clearPOCDetails();
 
     // Generate unique timestamp for test data
     const timestamp = new Date().getTime();
@@ -174,11 +174,11 @@ test.describe("Admin @regression", () => {
     };
 
     // Fill first POC details and save changes
-    await institutionSettingsProfilePage.fillPOCDetails(pocDetails1);
-    await institutionSettingsProfilePage.selectPOCCountryAndState();
-    await expect(institutionSettingsProfilePage.saveChangesButton).toBeEnabled();
-    await institutionSettingsProfilePage.saveChangesButton.click();
-    await expect(institutionSettingsProfilePage.successMessage).toBeVisible();
+    await adminInstitutionSettingsProfilePage.fillPOCDetails(pocDetails1);
+    await adminInstitutionSettingsProfilePage.selectPOCCountryAndState();
+    await expect(adminInstitutionSettingsProfilePage.saveChangesButton).toBeEnabled();
+    await adminInstitutionSettingsProfilePage.saveChangesButton.click();
+    await expect(adminInstitutionSettingsProfilePage.successMessage).toBeVisible();
 
     // Prepare second POC details dataset
     const pocDetails2 = {
@@ -192,83 +192,83 @@ test.describe("Admin @regression", () => {
     };
 
     // Clear and fill second POC details then save
-    await institutionSettingsProfilePage.clearPOCDetails(true);
-    await institutionSettingsProfilePage.fillPOCDetails(pocDetails2, true);
-    await institutionSettingsProfilePage.selectPOCCountryAndState();
-    await expect(institutionSettingsProfilePage.saveChangesButton).toBeEnabled();
-    await institutionSettingsProfilePage.saveChangesButton.click();
-    await expect(institutionSettingsProfilePage.successMessage).toBeVisible();
+    await adminInstitutionSettingsProfilePage.clearPOCDetails(true);
+    await adminInstitutionSettingsProfilePage.fillPOCDetails(pocDetails2, true);
+    await adminInstitutionSettingsProfilePage.selectPOCCountryAndState();
+    await expect(adminInstitutionSettingsProfilePage.saveChangesButton).toBeEnabled();
+    await adminInstitutionSettingsProfilePage.saveChangesButton.click();
+    await expect(adminInstitutionSettingsProfilePage.successMessage).toBeVisible();
   });
 
   test("Verify Save Changes Button is Disabled When No Edits Are Made @[112379] @admin @ui", async () => {
     // Verify buttons are visible but disabled without changes
-    await expect(institutionSettingsProfilePage.saveChangesButton).toBeVisible();
-    await expect(institutionSettingsProfilePage.saveChangesButton).toBeDisabled();
-    await expect(institutionSettingsProfilePage.cancelButton).toBeVisible();
-    await expect(institutionSettingsProfilePage.cancelButton).toBeDisabled();
+    await expect(adminInstitutionSettingsProfilePage.saveChangesButton).toBeVisible();
+    await expect(adminInstitutionSettingsProfilePage.saveChangesButton).toBeDisabled();
+    await expect(adminInstitutionSettingsProfilePage.cancelButton).toBeVisible();
+    await expect(adminInstitutionSettingsProfilePage.cancelButton).toBeDisabled();
   });
 
   test("Verify Navigating Away Discards Unsaved Changes @[112380] @admin @functional", async () => {
     const discardedText = "THIS BETTER B DISCARDED";
 
     // Make unsaved changes to POC fields
-    await institutionSettingsProfilePage.pocNameInput.fill(discardedText);
-    await institutionSettingsProfilePage.pocTitleInput.fill(discardedText);
-    await institutionSettingsProfilePage.pocEmailInput.fill(discardedText);
-    await expect(institutionSettingsProfilePage.saveChangesButton).toBeEnabled();
+    await adminInstitutionSettingsProfilePage.pocNameInput.fill(discardedText);
+    await adminInstitutionSettingsProfilePage.pocTitleInput.fill(discardedText);
+    await adminInstitutionSettingsProfilePage.pocEmailInput.fill(discardedText);
+    await expect(adminInstitutionSettingsProfilePage.saveChangesButton).toBeEnabled();
 
     // Navigate away without saving changes
-    await institutionSettingsProfilePage.usersTab.click();
+    await adminInstitutionSettingsProfilePage.usersTab.click();
 
     // Return to profile tab and verify changes were discarded
-    await institutionSettingsProfilePage.navigateToInstitutionSettingsProfile();
-    await expect(institutionSettingsProfilePage.pocNameInput).not.toHaveValue(discardedText);
-    await expect(institutionSettingsProfilePage.pocTitleInput).not.toHaveValue(discardedText);
-    await expect(institutionSettingsProfilePage.pocEmailInput).not.toHaveValue(discardedText);
-    await expect(institutionSettingsProfilePage.saveChangesButton).toBeDisabled();
+    await adminInstitutionSettingsProfilePage.navigateToInstitutionSettingsProfile();
+    await expect(adminInstitutionSettingsProfilePage.pocNameInput).not.toHaveValue(discardedText);
+    await expect(adminInstitutionSettingsProfilePage.pocTitleInput).not.toHaveValue(discardedText);
+    await expect(adminInstitutionSettingsProfilePage.pocEmailInput).not.toHaveValue(discardedText);
+    await expect(adminInstitutionSettingsProfilePage.saveChangesButton).toBeDisabled();
   });
 
   test.skip("[Negative] Verify Invalid Input in Phone Number Field @[112381] @admin @functional", async () => {
-    await institutionSettingsProfilePage.pocPhoneNumberInput.click();
-    await institutionSettingsProfilePage.pocPhoneNumberInput.fill("");
-    await expect(institutionSettingsProfilePage.saveChangesButton).toBeEnabled();
-    await institutionSettingsProfilePage.saveChangesButton.click();
-    await expect(institutionSettingsProfilePage.requiredFieldError).toBeVisible();
-    await expect(institutionSettingsProfilePage.errorMessage).toBeVisible();
+    await adminInstitutionSettingsProfilePage.pocPhoneNumberInput.click();
+    await adminInstitutionSettingsProfilePage.pocPhoneNumberInput.fill("");
+    await expect(adminInstitutionSettingsProfilePage.saveChangesButton).toBeEnabled();
+    await adminInstitutionSettingsProfilePage.saveChangesButton.click();
+    await expect(adminInstitutionSettingsProfilePage.requiredFieldError).toBeVisible();
+    await expect(adminInstitutionSettingsProfilePage.errorMessage).toBeVisible();
   });
 
   test("[Negative] Verify Invalid Email Address Entry @[112382] @admin @functional", async () => {
     // Fill email field with invalid format
-    await institutionSettingsProfilePage.pocEmailInput.fill(TEST_DATA.INVALID.EMAIL);
-    await expect(institutionSettingsProfilePage.saveChangesButton).toBeEnabled();
+    await adminInstitutionSettingsProfilePage.pocEmailInput.fill(TEST_DATA.INVALID.EMAIL);
+    await expect(adminInstitutionSettingsProfilePage.saveChangesButton).toBeEnabled();
 
     // Submit form and verify email validation error
-    await institutionSettingsProfilePage.saveChangesButton.click();
-    await expect(institutionSettingsProfilePage.invalidEmailError).toBeVisible();
-    await expect(institutionSettingsProfilePage.errorMessage).toBeVisible();
+    await adminInstitutionSettingsProfilePage.saveChangesButton.click();
+    await expect(adminInstitutionSettingsProfilePage.invalidEmailError).toBeVisible();
+    await expect(adminInstitutionSettingsProfilePage.errorMessage).toBeVisible();
   });
 
   test("Verify ZIP Code Field Does Not Accept Special Characters @[112383] @admin @functional", async () => {
     // Fill ZIP code field with invalid special characters
-    await institutionSettingsProfilePage.pocZipCodeInput.fill(TEST_DATA.INVALID.ZIP_WITH_SPECIAL_CHARS);
-    await expect(institutionSettingsProfilePage.saveChangesButton).toBeEnabled();
+    await adminInstitutionSettingsProfilePage.pocZipCodeInput.fill(TEST_DATA.INVALID.ZIP_WITH_SPECIAL_CHARS);
+    await expect(adminInstitutionSettingsProfilePage.saveChangesButton).toBeEnabled();
 
     // Submit form and verify ZIP code validation error
-    await institutionSettingsProfilePage.saveChangesButton.click();
-    await expect(institutionSettingsProfilePage.invalidTextFieldError).toBeVisible();
-    await expect(institutionSettingsProfilePage.errorMessage).toBeVisible();
+    await adminInstitutionSettingsProfilePage.saveChangesButton.click();
+    await expect(adminInstitutionSettingsProfilePage.invalidTextFieldError).toBeVisible();
+    await expect(adminInstitutionSettingsProfilePage.errorMessage).toBeVisible();
   });
 
   test("Verify the Patient Registration Link functionality @[112439] @admin @functional", async ({ context }) => {
     // Grant clipboard permissions to the context
     await context.grantPermissions(["clipboard-read", "clipboard-write"]);
 
-    await expect(institutionSettingsProfilePage.registrationLink).toBeVisible();
-    await institutionSettingsProfilePage.registrationLinkCopyButton.click();
-    await expect(institutionSettingsProfilePage.linkCopiedSuccessMessage).toBeVisible();
+    await expect(adminInstitutionSettingsProfilePage.registrationLink).toBeVisible();
+    await adminInstitutionSettingsProfilePage.registrationLinkCopyButton.click();
+    await expect(adminInstitutionSettingsProfilePage.linkCopiedSuccessMessage).toBeVisible();
 
     // Use page.evaluate() to access clipboard content
-    const clipboardContent = await institutionSettingsProfilePage.page.evaluate(async () => {
+    const clipboardContent = await adminInstitutionSettingsProfilePage.page.evaluate(async () => {
       return await navigator.clipboard.readText();
     });
     expect(clipboardContent).toContain("https://portal.qa-encounterservices.com/signup/INSOVOKTTWCHHQRXPZTOHIC");
@@ -278,13 +278,13 @@ test.describe("Admin @regression", () => {
     // Grant clipboard permissions to the context
     await context.grantPermissions(["clipboard-read", "clipboard-write"]);
 
-    await institutionSettingsProfilePage.page.waitForTimeout(500);
-    await expect(institutionSettingsProfilePage.deviceIDAccessLink).toBeVisible();
-    await institutionSettingsProfilePage.deviceIDAccessLinkCopyButton.click();
-    await expect(institutionSettingsProfilePage.linkCopiedSuccessMessage).toBeVisible();
+    await adminInstitutionSettingsProfilePage.page.waitForTimeout(500);
+    await expect(adminInstitutionSettingsProfilePage.deviceIDAccessLink).toBeVisible();
+    await adminInstitutionSettingsProfilePage.deviceIDAccessLinkCopyButton.click();
+    await expect(adminInstitutionSettingsProfilePage.linkCopiedSuccessMessage).toBeVisible();
 
     // Verify correct device ID URL was copied to clipboard
-    const clipboardContent = await institutionSettingsProfilePage.page.evaluate(async () => {
+    const clipboardContent = await adminInstitutionSettingsProfilePage.page.evaluate(async () => {
       return await navigator.clipboard.readText();
     });
     expect(clipboardContent).toContain("https://portal.qa-encounterservices.com/login/device");

@@ -1,48 +1,48 @@
 import { test, expect } from "@playwright/test";
-import { InstitutionSettingsConfigurationPage } from "../../models/pages/admin/institution-settings-configuration.page.js";
+import { AdminInstitutionSettingsConfigurationPage } from "../../models/pages/admin/institution-settings-configuration.page.js";
 import { useRole, ROLES } from "../../utils/auth-helpers.js";
 
 // Admin Configuration Settings - Total tests 10 (including 3 skipped)
 
 test.describe("Admin @regression", () => {
   test.use(useRole(ROLES.ADMIN));
-  let configPage;
+  let adminInstitutionSettingsConfigurationPage;
 
   test.beforeEach(async ({ page }) => {
-    configPage = new InstitutionSettingsConfigurationPage(page);
-    await configPage.navigateToInstitutionSettingsConfiguration();
+    adminInstitutionSettingsConfigurationPage = new AdminInstitutionSettingsConfigurationPage(page);
+    await adminInstitutionSettingsConfigurationPage.navigateToInstitutionSettingsConfiguration();
   });
 
   test("Verify Default settings in Configuration Tab on Institution Settings Screen @[111331] @admin @ui", async () => {
     // Verify main page elements are visible
-    await expect(configPage.heading).toBeVisible();
+    await expect(adminInstitutionSettingsConfigurationPage.heading).toBeVisible();
 
     // Verify enforce country setting elements
-    await expect(configPage.enforceCountryText).toBeVisible();
-    await expect(configPage.enforceCountryToggle).toBeVisible();
+    await expect(adminInstitutionSettingsConfigurationPage.enforceCountryText).toBeVisible();
+    await expect(adminInstitutionSettingsConfigurationPage.enforceCountryToggle).toBeVisible();
 
     // Verify provider contacting configuration elements
-    await expect(configPage.numberOfTimesToContactText).toBeVisible();
-    await expect(configPage.numberOfTimesToContactInput).toBeVisible();
-    await expect(configPage.numberOfMinutesText).toBeVisible();
-    await expect(configPage.numberOfMinutesInput).toBeVisible();
+    await expect(adminInstitutionSettingsConfigurationPage.numberOfTimesToContactText).toBeVisible();
+    await expect(adminInstitutionSettingsConfigurationPage.numberOfTimesToContactInput).toBeVisible();
+    await expect(adminInstitutionSettingsConfigurationPage.numberOfMinutesText).toBeVisible();
+    await expect(adminInstitutionSettingsConfigurationPage.numberOfMinutesInput).toBeVisible();
 
     // Verify additional toggle options
-    await expect(configPage.waitingRoomOptionText).toBeVisible();
-    await expect(configPage.waitingRoomOptionToggle).toBeVisible();
-    await expect(configPage.dispatcherOptionText).toBeVisible();
-    await expect(configPage.dispatcherOptionToggle).toBeVisible();
-    await expect(configPage.enableChatAppointmentsText).toBeVisible();
-    await expect(configPage.enableChatAppointmentsToggle).toBeVisible();
+    await expect(adminInstitutionSettingsConfigurationPage.waitingRoomOptionText).toBeVisible();
+    await expect(adminInstitutionSettingsConfigurationPage.waitingRoomOptionToggle).toBeVisible();
+    await expect(adminInstitutionSettingsConfigurationPage.dispatcherOptionText).toBeVisible();
+    await expect(adminInstitutionSettingsConfigurationPage.dispatcherOptionToggle).toBeVisible();
+    await expect(adminInstitutionSettingsConfigurationPage.enableChatAppointmentsText).toBeVisible();
+    await expect(adminInstitutionSettingsConfigurationPage.enableChatAppointmentsToggle).toBeVisible();
 
     // Verify action buttons are present
-    await expect(configPage.saveChangesButton).toBeVisible();
-    await expect(configPage.cancelButton).toBeVisible();
+    await expect(adminInstitutionSettingsConfigurationPage.saveChangesButton).toBeVisible();
+    await expect(adminInstitutionSettingsConfigurationPage.cancelButton).toBeVisible();
   });
 
   test("Verify Enabling and Disabling Toggles on Configuration Tab Screen @[111332] @admin @functional", async () => {
     // Capture initial toggle states
-    const initialStates = await configPage.getToggleStates();
+    const initialStates = await adminInstitutionSettingsConfigurationPage.getToggleStates();
 
     // Define toggles to test
     const toggleNames = ["enforceCountry", "waitingRoom", "dispatcher", "chatAppointments"];
@@ -50,10 +50,10 @@ test.describe("Admin @regression", () => {
     // Test each toggle can be clicked and state changes
     for (const toggleName of toggleNames) {
       const toggleMap = {
-        enforceCountry: configPage.enforceCountryToggle,
-        waitingRoom: configPage.waitingRoomOptionToggle,
-        dispatcher: configPage.dispatcherOptionToggle,
-        chatAppointments: configPage.enableChatAppointmentsToggle,
+        enforceCountry: adminInstitutionSettingsConfigurationPage.enforceCountryToggle,
+        waitingRoom: adminInstitutionSettingsConfigurationPage.waitingRoomOptionToggle,
+        dispatcher: adminInstitutionSettingsConfigurationPage.dispatcherOptionToggle,
+        chatAppointments: adminInstitutionSettingsConfigurationPage.enableChatAppointmentsToggle,
       };
 
       const toggle = toggleMap[toggleName];
@@ -64,10 +64,10 @@ test.describe("Admin @regression", () => {
     // Revert all toggles to original state
     for (const toggleName of toggleNames) {
       const toggleMap = {
-        enforceCountry: configPage.enforceCountryToggle,
-        waitingRoom: configPage.waitingRoomOptionToggle,
-        dispatcher: configPage.dispatcherOptionToggle,
-        chatAppointments: configPage.enableChatAppointmentsToggle,
+        enforceCountry: adminInstitutionSettingsConfigurationPage.enforceCountryToggle,
+        waitingRoom: adminInstitutionSettingsConfigurationPage.waitingRoomOptionToggle,
+        dispatcher: adminInstitutionSettingsConfigurationPage.dispatcherOptionToggle,
+        chatAppointments: adminInstitutionSettingsConfigurationPage.enableChatAppointmentsToggle,
       };
 
       const toggle = toggleMap[toggleName];
@@ -76,105 +76,105 @@ test.describe("Admin @regression", () => {
     }
 
     // Verify save button is disabled when no changes remain
-    await expect(configPage.saveChangesButton).toBeDisabled();
+    await expect(adminInstitutionSettingsConfigurationPage.saveChangesButton).toBeDisabled();
   });
 
   test.skip('Verify "Enforce Country/State Liscensing on Provider Lists Enabled" Toggle @[112108] @multi-user @functional', async () => {});
 
   test('Check Default Values and Valid Input for "On-Demand Provider Contacting Choices" Fields @[112113] @admin @functional', async () => {
     // Capture and verify current default values
-    const defaultValues = await configPage.getInputValues();
-    await expect(configPage.numberOfTimesToContactInput).toHaveValue(defaultValues.timesToContact);
-    await expect(configPage.numberOfMinutesInput).toHaveValue(defaultValues.minutes);
+    const defaultValues = await adminInstitutionSettingsConfigurationPage.getInputValues();
+    await expect(adminInstitutionSettingsConfigurationPage.numberOfTimesToContactInput).toHaveValue(defaultValues.timesToContact);
+    await expect(adminInstitutionSettingsConfigurationPage.numberOfMinutesInput).toHaveValue(defaultValues.minutes);
 
     // Generate new test values by incrementing defaults
     const newTimesToContact = (parseInt(defaultValues.timesToContact, 10) + 1).toString();
     const newMinutes = (parseInt(defaultValues.minutes, 10) + 1).toString();
 
     // Fill fields with new values and verify save button activates
-    await configPage.numberOfTimesToContactInput.fill(newTimesToContact);
-    await configPage.numberOfMinutesInput.fill(newMinutes);
-    await configPage.page.waitForTimeout(500);
+    await adminInstitutionSettingsConfigurationPage.numberOfTimesToContactInput.fill(newTimesToContact);
+    await adminInstitutionSettingsConfigurationPage.numberOfMinutesInput.fill(newMinutes);
+    await adminInstitutionSettingsConfigurationPage.page.waitForTimeout(500);
 
-    await expect(configPage.saveChangesButton).toBeEnabled();
-    await configPage.saveChangesButton.click();
-    await configPage.page.waitForLoadState("networkidle");
+    await expect(adminInstitutionSettingsConfigurationPage.saveChangesButton).toBeEnabled();
+    await adminInstitutionSettingsConfigurationPage.saveChangesButton.click();
+    await adminInstitutionSettingsConfigurationPage.page.waitForLoadState("networkidle");
 
     // Verify new values persist after save
-    await expect(configPage.numberOfTimesToContactInput).toHaveValue(newTimesToContact);
-    await expect(configPage.numberOfMinutesInput).toHaveValue(newMinutes);
-    await expect(configPage.saveChangesButton).toBeDisabled();
+    await expect(adminInstitutionSettingsConfigurationPage.numberOfTimesToContactInput).toHaveValue(newTimesToContact);
+    await expect(adminInstitutionSettingsConfigurationPage.numberOfMinutesInput).toHaveValue(newMinutes);
+    await expect(adminInstitutionSettingsConfigurationPage.saveChangesButton).toBeDisabled();
 
     // Reset to standard default values
-    await configPage.numberOfTimesToContactInput.fill("5");
-    await configPage.numberOfMinutesInput.fill("1");
-    await configPage.page.waitForTimeout(500);
-    await expect(configPage.saveChangesButton).toBeEnabled();
-    await configPage.saveChangesButton.click();
-    await configPage.page.waitForLoadState("networkidle");
+    await adminInstitutionSettingsConfigurationPage.numberOfTimesToContactInput.fill("5");
+    await adminInstitutionSettingsConfigurationPage.numberOfMinutesInput.fill("1");
+    await adminInstitutionSettingsConfigurationPage.page.waitForTimeout(500);
+    await expect(adminInstitutionSettingsConfigurationPage.saveChangesButton).toBeEnabled();
+    await adminInstitutionSettingsConfigurationPage.saveChangesButton.click();
+    await adminInstitutionSettingsConfigurationPage.page.waitForLoadState("networkidle");
 
     // Verify reset to defaults was successful
-    await expect(configPage.numberOfTimesToContactInput).toHaveValue("5");
-    await expect(configPage.numberOfMinutesInput).toHaveValue("1");
+    await expect(adminInstitutionSettingsConfigurationPage.numberOfTimesToContactInput).toHaveValue("5");
+    await expect(adminInstitutionSettingsConfigurationPage.numberOfMinutesInput).toHaveValue("1");
   });
 
   test.skip("[Negative] Verify Input Validation for Retry Fields in Institution Configuration @[112114] @admin @functional", async () => {
     // Trigger zero value validation workflow
-    await configPage.performZeroValidationFlow();
+    await adminInstitutionSettingsConfigurationPage.performZeroValidationFlow();
 
     // Verify validation error messages appear
-    await expect(configPage.formErrorMessage).toBeVisible();
-    await expect(configPage.zeroValueErrorMessage.first()).toBeVisible();
-    await expect(configPage.zeroValueErrorMessage.nth(1)).toBeVisible();
+    await expect(adminInstitutionSettingsConfigurationPage.formErrorMessage).toBeVisible();
+    await expect(adminInstitutionSettingsConfigurationPage.zeroValueErrorMessage.first()).toBeVisible();
+    await expect(adminInstitutionSettingsConfigurationPage.zeroValueErrorMessage.nth(1)).toBeVisible();
 
     // Reset fields to valid values
-    await configPage.numberOfTimesToContactInput.fill("5");
-    await configPage.numberOfMinutesInput.fill("1");
-    await configPage.page.waitForTimeout(500);
+    await adminInstitutionSettingsConfigurationPage.numberOfTimesToContactInput.fill("5");
+    await adminInstitutionSettingsConfigurationPage.numberOfMinutesInput.fill("1");
+    await adminInstitutionSettingsConfigurationPage.page.waitForTimeout(500);
 
     // Save changes if button is enabled
-    if (await configPage.saveChangesButton.isEnabled()) {
-      await configPage.saveChangesButton.click();
-      await configPage.page.waitForTimeout(500);
+    if (await adminInstitutionSettingsConfigurationPage.saveChangesButton.isEnabled()) {
+      await adminInstitutionSettingsConfigurationPage.saveChangesButton.click();
+      await adminInstitutionSettingsConfigurationPage.page.waitForTimeout(500);
     }
 
     // Verify save button returns to disabled state
-    await expect(configPage.saveChangesButton).toBeDisabled();
+    await expect(adminInstitutionSettingsConfigurationPage.saveChangesButton).toBeDisabled();
   });
 
   test("Validate Save Button Activation Upon Any Setting Change @[112116] @admin @functional", async () => {
     // Modify input field to trigger save button activation
-    await configPage.numberOfTimesToContactInput.fill("0");
-    await expect(configPage.saveChangesButton).toBeEnabled();
+    await adminInstitutionSettingsConfigurationPage.numberOfTimesToContactInput.fill("0");
+    await expect(adminInstitutionSettingsConfigurationPage.saveChangesButton).toBeEnabled();
   });
 
   test("[Negative] Verify Save Button Behavior Without Changes @[112117] @admin @functional", async () => {
     // Verify save button remains disabled without any changes
-    await expect(configPage.saveChangesButton).toBeDisabled();
+    await expect(adminInstitutionSettingsConfigurationPage.saveChangesButton).toBeDisabled();
   });
 
   test("Verify Dispatcher Toggle in Institution Settings @[114051] @admin @functional", async () => {
     // Check current state of dispatcher toggle
-    const isInitiallyChecked = await configPage.dispatcherOptionToggle.isChecked();
+    const isInitiallyChecked = await adminInstitutionSettingsConfigurationPage.dispatcherOptionToggle.isChecked();
 
     // Test toggle functionality based on current state
     if (!isInitiallyChecked) {
-      await configPage.dispatcherOptionToggle.click();
-      await expect(configPage.dispatcherOptionToggle).toBeChecked();
-      await expect(configPage.saveChangesButton).toBeEnabled();
+      await adminInstitutionSettingsConfigurationPage.dispatcherOptionToggle.click();
+      await expect(adminInstitutionSettingsConfigurationPage.dispatcherOptionToggle).toBeChecked();
+      await expect(adminInstitutionSettingsConfigurationPage.saveChangesButton).toBeEnabled();
     } else {
       // Verify current checked state and disabled save button
-      await expect(configPage.dispatcherOptionToggle).toBeChecked();
-      await expect(configPage.saveChangesButton).toBeDisabled();
+      await expect(adminInstitutionSettingsConfigurationPage.dispatcherOptionToggle).toBeChecked();
+      await expect(adminInstitutionSettingsConfigurationPage.saveChangesButton).toBeDisabled();
     }
   });
 });
 
 test.describe("Super Admin @regression", () => {
-  let configPage;
+  let adminInstitutionSettingsConfigurationPage;
   test.beforeEach(async ({ page }) => {
-    configPage = new InstitutionSettingsConfigurationPage(page);
-    await configPage.navigateToInstitutionSettingsConfiguration();
+    adminInstitutionSettingsConfigurationPage = new AdminInstitutionSettingsConfigurationPage(page);
+    await adminInstitutionSettingsConfigurationPage.navigateToInstitutionSettingsConfiguration();
   });
 
   test.skip("Verify Interactive Triage Toggle is Only Visible to System Admin @[114052] @super-admin @functional", async () => {});

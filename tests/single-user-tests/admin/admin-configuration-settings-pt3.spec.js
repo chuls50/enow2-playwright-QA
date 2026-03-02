@@ -1,43 +1,43 @@
 import { test, expect } from "@playwright/test";
-import { InstitutionSettingsConfigurationPage } from "../../models/pages/admin/institution-settings-configuration.page.js";
+import { AdminInstitutionSettingsConfigurationPage } from "../../models/pages/admin/institution-settings-configuration.page.js";
 import { useRole, ROLES } from "../../utils/auth-helpers.js";
 
 // Admin Configuration Settings pt3 - Total Tests 8 (including 6 skipped)
 
 test.describe("Admin @regression", () => {
   test.use(useRole(ROLES.ADMIN));
-  let configPage;
+  let adminInstitutionSettingsConfigurationPage;
 
   test.beforeEach(async ({ page }) => {
-    configPage = new InstitutionSettingsConfigurationPage(page);
-    await configPage.navigateToInstitutionSettingsConfiguration();
-    await configPage.ensureChatAppointmentsAreOn();
+    adminInstitutionSettingsConfigurationPage = new AdminInstitutionSettingsConfigurationPage(page);
+    await adminInstitutionSettingsConfigurationPage.navigateToInstitutionSettingsConfiguration();
+    await adminInstitutionSettingsConfigurationPage.ensureChatAppointmentsAreOn();
   });
 
   test("Verify Presence and Description of 'Enable Chat Appointment Types' Toggle @[115706] @admin @ui", async () => {
     // Verify chat appointments toggle is visible
-    await expect(configPage.enableChatAppointmentsToggle).toBeVisible();
+    await expect(adminInstitutionSettingsConfigurationPage.enableChatAppointmentsToggle).toBeVisible();
 
     // Verify toggle description text is visible
-    await expect(configPage.enableChatAppointmentsDescription).toBeVisible();
+    await expect(adminInstitutionSettingsConfigurationPage.enableChatAppointmentsDescription).toBeVisible();
   });
 
   test("Verify 'Save Changes' Button Enables When Toggle Is Modified @[115707] @admin @functional", async () => {
     // Toggle chat appointments off to trigger save button
-    const isCurrentlyOn = await configPage.enableChatAppointmentsToggle.isChecked();
+    const isCurrentlyOn = await adminInstitutionSettingsConfigurationPage.enableChatAppointmentsToggle.isChecked();
     if (isCurrentlyOn) {
-      await configPage.enableChatAppointmentsToggle.click();
+      await adminInstitutionSettingsConfigurationPage.enableChatAppointmentsToggle.click();
     }
-    await expect(configPage.saveChangesButton).toBeEnabled();
+    await expect(adminInstitutionSettingsConfigurationPage.saveChangesButton).toBeEnabled();
 
-    await configPage.page.waitForTimeout(1000);
+    await adminInstitutionSettingsConfigurationPage.page.waitForTimeout(1000);
 
     // Toggle back on to return to original state
-    const isCurrentlyOff = await configPage.enableChatAppointmentsToggle.isChecked();
+    const isCurrentlyOff = await adminInstitutionSettingsConfigurationPage.enableChatAppointmentsToggle.isChecked();
     if (!isCurrentlyOff) {
-      await configPage.enableChatAppointmentsToggle.click();
+      await adminInstitutionSettingsConfigurationPage.enableChatAppointmentsToggle.click();
     }
-    await expect(configPage.saveChangesButton).toBeDisabled();
+    await expect(adminInstitutionSettingsConfigurationPage.saveChangesButton).toBeDisabled();
   });
 
   // @patient

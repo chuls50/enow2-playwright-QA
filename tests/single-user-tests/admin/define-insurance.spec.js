@@ -1,68 +1,68 @@
 import { test, expect } from "@playwright/test";
-import { InstitutionSettingsInsurancePage } from "../../models/pages/admin/institution-settings-insurance.page.js";
+import { AdminInstitutionSettingsInsurancePage } from "../../models/pages/admin/institution-settings-insurance.page.js";
 import { useRole, ROLES } from "../../utils/auth-helpers.js";
 
 // Define Insurance - Total Tests 8 (including 1 skipped test)
 
 test.describe("Admin @regression", () => {
   test.use(useRole(ROLES.ADMIN));
-  let institutionSettingsInsurancePage;
+  let adminInstitutionSettingsInsurancePage;
 
   test.beforeEach(async ({ page }) => {
-    institutionSettingsInsurancePage = new InstitutionSettingsInsurancePage(page);
-    await institutionSettingsInsurancePage.navigateToInsuranceSettings();
+    adminInstitutionSettingsInsurancePage = new AdminInstitutionSettingsInsurancePage(page);
+    await adminInstitutionSettingsInsurancePage.navigateToInsuranceSettings();
   });
 
   test("Verify Insurance Section Display @[112187] @admin @ui", async () => {
-    await expect(institutionSettingsInsurancePage.heading).toBeVisible();
-    await expect(institutionSettingsInsurancePage.insuranceSection).toBeVisible();
-    await expect(institutionSettingsInsurancePage.premiumPackageLabel).toBeVisible();
-    await expect(institutionSettingsInsurancePage.premiumPackageToggle).toBeVisible();
-    await expect(institutionSettingsInsurancePage.premiumPackageToggle).toBeEnabled();
-    await expect(institutionSettingsInsurancePage.premiumPackageNameLabel).toBeVisible();
-    await expect(institutionSettingsInsurancePage.premiumPackageNameInput).toBeVisible();
-    await expect(institutionSettingsInsurancePage.premiumPackageNameInput).toBeEnabled();
-    await expect(institutionSettingsInsurancePage.insuranceTitle).toBeVisible();
-    await expect(institutionSettingsInsurancePage.copayAmount).toBeVisible();
-    await expect(institutionSettingsInsurancePage.deleteButton).toBeVisible();
-    await expect(institutionSettingsInsurancePage.addInsuranceButton).toBeVisible();
-    await expect(institutionSettingsInsurancePage.addInsuranceButton).toBeDisabled();
-    await expect(institutionSettingsInsurancePage.saveChangesButton).toBeVisible();
-    await expect(institutionSettingsInsurancePage.saveChangesButton).toBeDisabled();
-    await expect(institutionSettingsInsurancePage.cancelButton).toBeVisible();
+    await expect(adminInstitutionSettingsInsurancePage.heading).toBeVisible();
+    await expect(adminInstitutionSettingsInsurancePage.insuranceSection).toBeVisible();
+    await expect(adminInstitutionSettingsInsurancePage.premiumPackageLabel).toBeVisible();
+    await expect(adminInstitutionSettingsInsurancePage.premiumPackageToggle).toBeVisible();
+    await expect(adminInstitutionSettingsInsurancePage.premiumPackageToggle).toBeEnabled();
+    await expect(adminInstitutionSettingsInsurancePage.premiumPackageNameLabel).toBeVisible();
+    await expect(adminInstitutionSettingsInsurancePage.premiumPackageNameInput).toBeVisible();
+    await expect(adminInstitutionSettingsInsurancePage.premiumPackageNameInput).toBeEnabled();
+    await expect(adminInstitutionSettingsInsurancePage.insuranceTitle).toBeVisible();
+    await expect(adminInstitutionSettingsInsurancePage.copayAmount).toBeVisible();
+    await expect(adminInstitutionSettingsInsurancePage.deleteButton).toBeVisible();
+    await expect(adminInstitutionSettingsInsurancePage.addInsuranceButton).toBeVisible();
+    await expect(adminInstitutionSettingsInsurancePage.addInsuranceButton).toBeDisabled();
+    await expect(adminInstitutionSettingsInsurancePage.saveChangesButton).toBeVisible();
+    await expect(adminInstitutionSettingsInsurancePage.saveChangesButton).toBeDisabled();
+    await expect(adminInstitutionSettingsInsurancePage.cancelButton).toBeVisible();
   });
 
   test("Verify Premium Package Toggle Functionality @[112188] @admin @functional", async () => {
-    await institutionSettingsInsurancePage.premiumPackageToggle.click();
-    await expect(institutionSettingsInsurancePage.saveChangesButton).toBeEnabled();
+    await adminInstitutionSettingsInsurancePage.premiumPackageToggle.click();
+    await expect(adminInstitutionSettingsInsurancePage.saveChangesButton).toBeEnabled();
   });
 
   test("Verify Premium Package Name Input @[112189] @admin @functional", async () => {
-    await institutionSettingsInsurancePage.enablePremiumPackageIfNeeded();
-    await expect(institutionSettingsInsurancePage.premiumPackageNameInput).toBeVisible();
-    await expect(institutionSettingsInsurancePage.premiumPackageNameInput).toBeEnabled();
-    await institutionSettingsInsurancePage.premiumPackageNameInput.fill("Premium Insured Package");
-    await expect(institutionSettingsInsurancePage.saveChangesButton).toBeEnabled();
+    await adminInstitutionSettingsInsurancePage.enablePremiumPackageIfNeeded();
+    await expect(adminInstitutionSettingsInsurancePage.premiumPackageNameInput).toBeVisible();
+    await expect(adminInstitutionSettingsInsurancePage.premiumPackageNameInput).toBeEnabled();
+    await adminInstitutionSettingsInsurancePage.premiumPackageNameInput.fill("Premium Insured Package");
+    await expect(adminInstitutionSettingsInsurancePage.saveChangesButton).toBeEnabled();
   });
 
   test("Verify Self Payment Toggle Functionality @[112190] @admin @functional", async () => {
-    await institutionSettingsInsurancePage.selfPaymentToggleSwitch.click();
-    await expect(institutionSettingsInsurancePage.saveChangesButton).toBeEnabled();
+    await adminInstitutionSettingsInsurancePage.selfPaymentToggleSwitch.click();
+    await expect(adminInstitutionSettingsInsurancePage.saveChangesButton).toBeEnabled();
   });
 
   test("Verify Adding a New Insurance Entry @[112193] @admin @functional", async () => {
-    await institutionSettingsInsurancePage.enablePremiumPackageIfNeeded();
-    await institutionSettingsInsurancePage.addInsuranceEntry();
-    await expect(institutionSettingsInsurancePage.saveChangesButton).toBeEnabled();
+    await adminInstitutionSettingsInsurancePage.enablePremiumPackageIfNeeded();
+    await adminInstitutionSettingsInsurancePage.addInsuranceEntry();
+    await expect(adminInstitutionSettingsInsurancePage.saveChangesButton).toBeEnabled();
 
     // Add more explicit assertions for the added insurance
     // For new insurance entry, we'll verify it by checking that the full text pattern exists
-    const insuranceRow = institutionSettingsInsurancePage.page.locator("div").filter({ hasText: /^Test Insurance20Delete$/ });
+    const insuranceRow = adminInstitutionSettingsInsurancePage.page.locator("div").filter({ hasText: /^Test Insurance20Delete$/ });
 
     await expect(insuranceRow).toBeVisible();
 
     // Verify the delete button for the new insurance is visible
-    const deleteButton = institutionSettingsInsurancePage.page
+    const deleteButton = adminInstitutionSettingsInsurancePage.page
       .locator("div")
       .filter({ hasText: /^Test Insurance20Delete$/ })
       .getByRole("button")
@@ -74,28 +74,28 @@ test.describe("Admin @regression", () => {
   test.skip("Verify Insurance Edit Functionality @[112191] @admin @functional", async () => {});
 
   test("Verify Insurance Deletion Functionality @[112192] @admin @functional", async () => {
-    await institutionSettingsInsurancePage.enablePremiumPackageIfNeeded();
+    await adminInstitutionSettingsInsurancePage.enablePremiumPackageIfNeeded();
 
     // Add insurance using the helper method
-    await institutionSettingsInsurancePage.addInsuranceEntry();
+    await adminInstitutionSettingsInsurancePage.addInsuranceEntry();
 
     // Click the delete button for the added insurance using a more stable selector
-    const deleteButton = institutionSettingsInsurancePage.page
+    const deleteButton = adminInstitutionSettingsInsurancePage.page
       .locator("div")
       .filter({ hasText: /^Test Insurance20Delete$/ })
       .getByRole("button")
       .first();
 
     await deleteButton.click();
-    await institutionSettingsInsurancePage.page.waitForLoadState("networkidle");
-    await institutionSettingsInsurancePage.page.waitForSelector('div:has-text("Test Insurance")', { state: "detached" });
-    await expect(institutionSettingsInsurancePage.addInsuranceButton).toBeDisabled();
+    await adminInstitutionSettingsInsurancePage.page.waitForLoadState("networkidle");
+    await adminInstitutionSettingsInsurancePage.page.waitForSelector('div:has-text("Test Insurance")', { state: "detached" });
+    await expect(adminInstitutionSettingsInsurancePage.addInsuranceButton).toBeDisabled();
   });
 
   test("[Negative] Verify Navigation Away Without Saving Changes @[112194] @admin @functional", async () => {
-    await institutionSettingsInsurancePage.enablePremiumPackageIfNeeded();
-    await institutionSettingsInsurancePage.addInsuranceEntry();
-    await institutionSettingsInsurancePage.navigateToInsuranceSettings();
-    await expect(institutionSettingsInsurancePage.saveChangesButton).toBeDisabled();
+    await adminInstitutionSettingsInsurancePage.enablePremiumPackageIfNeeded();
+    await adminInstitutionSettingsInsurancePage.addInsuranceEntry();
+    await adminInstitutionSettingsInsurancePage.navigateToInsuranceSettings();
+    await expect(adminInstitutionSettingsInsurancePage.saveChangesButton).toBeDisabled();
   });
 });

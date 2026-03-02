@@ -55,7 +55,7 @@ export class AdminInstitutionSettingsConfigurationPage extends BasePage {
 
     // Institution Selection Dropdown
     this.institutionDropdown = page.getByTestId("icon-ChevronDown").nth(1);
-    this.codyTestInstitutionOption = page.getByTestId("custom-dropdown-item-Cody Test");
+    // this.codyTestInstitutionOption = page.getByTestId("custom-dropdown-item-Cody Test");
 
     // Success Messages
     this.successMessage = page.getByText("Success", { exact: true });
@@ -131,10 +131,10 @@ export class AdminInstitutionSettingsConfigurationPage extends BasePage {
   // INSTITUTION MANAGEMENT ACTIONS
   // ==============================
 
-  async selectCodyTestInstitution() {
-    await this.institutionDropdown.click();
-    await this.codyTestInstitutionOption.click();
-  }
+  // async selectCodyTestInstitution() {
+  //   await this.institutionDropdown.click();
+  //   await this.codyTestInstitutionOption.click();
+  // }
 
   async navigateToConfiguration() {
     await this.page.waitForLoadState("networkidle");

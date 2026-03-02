@@ -1,68 +1,68 @@
 import { test, expect } from "@playwright/test";
-import { InstitutionSettingsConfigurationPage } from "../../models/pages/admin/institution-settings-configuration.page.js";
+import { AdminInstitutionSettingsConfigurationPage } from "../../models/pages/admin/institution-settings-configuration.page.js";
 import { useRole, ROLES } from "../../utils/auth-helpers.js";
 
 // Admin Configuration Settings pt2 - Total Tests 6 (including 4 skipped)
 
 test.describe("Admin @regression", () => {
   test.use(useRole(ROLES.ADMIN));
-  let configPage;
+  let adminInstitutionSettingsConfigurationPage;
 
   test.beforeEach(async ({ page }) => {
-    configPage = new InstitutionSettingsConfigurationPage(page);
-    await configPage.navigateToInstitutionSettingsConfiguration();
-    await configPage.ensureWaitingRoomIsOn();
+    adminInstitutionSettingsConfigurationPage = new AdminInstitutionSettingsConfigurationPage(page);
+    await adminInstitutionSettingsConfigurationPage.navigateToInstitutionSettingsConfiguration();
+    await adminInstitutionSettingsConfigurationPage.ensureWaitingRoomIsOn();
   });
 
   test("Verify presence and description of waiting room toggle @[117453] @admin @ui", async () => {
     // Verify waiting room toggle and description are visible
-    await expect(configPage.waitingRoomOptionToggle).toBeVisible();
-    await expect(configPage.waitingRoomOptionDescription).toBeVisible();
+    await expect(adminInstitutionSettingsConfigurationPage.waitingRoomOptionToggle).toBeVisible();
+    await expect(adminInstitutionSettingsConfigurationPage.waitingRoomOptionDescription).toBeVisible();
   });
 
   test('Verify "Save Changes" Button Enables When "Waiting Room Option" Toggle Is Modified @[117456] @admin @functional', async () => {
     // Toggle waiting room option off to trigger save button
-    const isCurrentlyOn = await configPage.waitingRoomOptionToggle.isChecked();
+    const isCurrentlyOn = await adminInstitutionSettingsConfigurationPage.waitingRoomOptionToggle.isChecked();
     if (isCurrentlyOn) {
-      await configPage.waitingRoomOptionToggle.click();
+      await adminInstitutionSettingsConfigurationPage.waitingRoomOptionToggle.click();
     }
-    await expect(configPage.saveChangesButton).toBeEnabled();
+    await expect(adminInstitutionSettingsConfigurationPage.saveChangesButton).toBeEnabled();
 
-    await configPage.page.waitForTimeout(1000);
+    await adminInstitutionSettingsConfigurationPage.page.waitForTimeout(1000);
 
     // Toggle back on to return to original state
-    const isCurrentlyOff = await configPage.waitingRoomOptionToggle.isChecked();
+    const isCurrentlyOff = await adminInstitutionSettingsConfigurationPage.waitingRoomOptionToggle.isChecked();
     if (!isCurrentlyOff) {
-      await configPage.waitingRoomOptionToggle.click();
+      await adminInstitutionSettingsConfigurationPage.waitingRoomOptionToggle.click();
     }
-    await expect(configPage.saveChangesButton).toBeDisabled();
+    await expect(adminInstitutionSettingsConfigurationPage.saveChangesButton).toBeDisabled();
   });
 
   test('Verify "Insurance & Payments" Tab Unaffected @[117593] @admin @ui', async () => {
     // Verify insurance section is initially visible
-    await expect(configPage.insurancePaymentsSection).toBeVisible();
+    await expect(adminInstitutionSettingsConfigurationPage.insurancePaymentsSection).toBeVisible();
 
     // Toggle waiting room option and save changes
-    const isCurrentlyOn = await configPage.waitingRoomOptionToggle.isChecked();
+    const isCurrentlyOn = await adminInstitutionSettingsConfigurationPage.waitingRoomOptionToggle.isChecked();
     if (isCurrentlyOn) {
-      await configPage.waitingRoomOptionToggle.click();
+      await adminInstitutionSettingsConfigurationPage.waitingRoomOptionToggle.click();
     }
-    await configPage.saveChangesButton.click();
-    await configPage.page.waitForLoadState("networkidle");
+    await adminInstitutionSettingsConfigurationPage.saveChangesButton.click();
+    await adminInstitutionSettingsConfigurationPage.page.waitForLoadState("networkidle");
 
     // Verify insurance section remains visible after changes
-    await expect(configPage.insurancePaymentsSection).toBeVisible();
+    await expect(adminInstitutionSettingsConfigurationPage.insurancePaymentsSection).toBeVisible();
   });
 });
 
 test.describe("Admin+Coordinator @regression", () => {
   test.use(useRole(ROLES.ADMIN_COORDINATOR));
-  let configPage;
+  let adminInstitutionSettingsConfigurationPage;
 
   test.beforeEach(async ({ page }) => {
-    configPage = new InstitutionSettingsConfigurationPage(page);
-    await configPage.navigateToInstitutionSettingsConfiguration();
-    await configPage.ensureWaitingRoomIsOn();
+    adminInstitutionSettingsConfigurationPage = new AdminInstitutionSettingsConfigurationPage(page);
+    await adminInstitutionSettingsConfigurationPage.navigateToInstitutionSettingsConfiguration();
+    await adminInstitutionSettingsConfigurationPage.ensureWaitingRoomIsOn();
   });
 
   test.skip("[Negative] Verify Waiting Rooms Do Not Reappear Without Saving Toggle Change @[117457] @multi-user @functional", async () => {});
