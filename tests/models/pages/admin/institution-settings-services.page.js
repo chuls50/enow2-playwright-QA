@@ -1,6 +1,6 @@
 import { BasePage } from "../../base-page.js";
 
-export class InstitutionSettingsServicesPage extends BasePage {
+export class AdminInstitutionSettingsServicesPage extends BasePage {
   constructor(page) {
     super(page);
 
@@ -43,7 +43,7 @@ export class InstitutionSettingsServicesPage extends BasePage {
     // Specialty Dropdown
     this.specialtyDropdownRequiredText = page.getByText("Specialty required");
     this.specialtyDropdownItemsWrapper = page.getByTestId("items-wrapper");
-    this.specialtyGeneralPractitionerItem = page.getByTestId("item General Practitioner");
+    this.specialtyGeneralPractitionerItem = page.getByTestId("item General Practitioner").nth(1);
 
     // Fee Price Field
     this.feePriceField = page.getByRole("textbox", { name: "Fee price" }).first();
@@ -53,9 +53,9 @@ export class InstitutionSettingsServicesPage extends BasePage {
     this.customDropdown = page.getByTestId("custom-dropdown");
 
     // Provider Table Elements
-    this.userNameColumn = page.getByRole("cell", { name: "User Name" });
-    this.emailColumn = page.getByRole("cell", { name: "Email" });
-    this.removeColumn = page.getByRole("cell", { name: "Remove" });
+    this.userNameColumn = page.getByRole("columnheader", { name: "User Name" });
+    this.emailColumn = page.getByRole("columnheader", { name: "Email" });
+    this.removeColumn = page.getByRole("columnheader", { name: "Remove" });
     this.searchProviderText = page.getByText("Search Provider");
     this.selectProviderText = page.getByText("Select Provider");
 
@@ -117,5 +117,14 @@ export class InstitutionSettingsServicesPage extends BasePage {
   async searchProvider(providerName) {
     await this.selectProviderInput.click();
     await this.selectProviderInput.fill(providerName);
+  }
+
+  // if getByRole('button', { name: 'Trash' }) is visible, it means there is at least one provider assigned to the service, and we need to remove them before testing adding a provider
+  async removeProvider() {
+    if (await this.trashButton.isVisible()) {
+      await this.trashButton.click();
+      await this.page.waitForLoadState("networkidle");
+      await this.page.waitForTimeout(1000);
+    }
   }
 }

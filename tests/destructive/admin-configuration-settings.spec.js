@@ -1,6 +1,6 @@
 import { test, expect } from "@playwright/test";
-import { AdminInstitutionSettingsConfigurationPage } from "../../models/pages/admin/institution-settings-configuration.page.js";
-import { useRole, ROLES } from "../../utils/auth-helpers.js";
+import { AdminInstitutionSettingsConfigurationPage } from "../models/pages/admin/institution-settings-configuration.page.js";
+import { useRole, ROLES } from "../utils/auth-helpers.js";
 
 // Admin Configuration Settings - Total tests 10 (including 3 skipped)
 
@@ -111,6 +111,7 @@ test.describe("Admin @regression", () => {
     await adminInstitutionSettingsConfigurationPage.page.waitForTimeout(500);
     await expect(adminInstitutionSettingsConfigurationPage.saveChangesButton).toBeEnabled();
     await adminInstitutionSettingsConfigurationPage.saveChangesButton.click();
+    await adminInstitutionSettingsConfigurationPage.page.waitForTimeout(500);
     await adminInstitutionSettingsConfigurationPage.page.waitForLoadState("networkidle");
 
     // Verify reset to defaults was successful
@@ -171,13 +172,20 @@ test.describe("Admin @regression", () => {
 });
 
 test.describe("Super Admin @regression", () => {
+  test.use(useRole(ROLES.SUPER_ADMIN));
   let adminInstitutionSettingsConfigurationPage;
   test.beforeEach(async ({ page }) => {
     adminInstitutionSettingsConfigurationPage = new AdminInstitutionSettingsConfigurationPage(page);
     await adminInstitutionSettingsConfigurationPage.navigateToInstitutionSettingsConfiguration();
   });
 
-  test.skip("Verify Interactive Triage Toggle is Only Visible to System Admin @[114052] @super-admin @functional", async () => {});
+  test("Verify Interactive Triage Toggle is Only Visible to System Admin @[114052] @super-admin @functional", async () => {
+    // Verify the interactive triage toggle is visible for super admin
+    await expect(adminInstitutionSettingsConfigurationPage.interactiveTriageToggle).toBeVisible();
+    await expect(adminInstitutionSettingsConfigurationPage.interactiveTriageText).toBeVisible();
+    await expect(adminInstitutionSettingsConfigurationPage.interactiveTriageDescription).toBeVisible();
+  });
 
+  // e2e test to verify the functionality of the interactive triage toggle will be added in the future when the feature is fully developed and ready for testing
   test.skip("Verify Functionality of Interactive Triage Toggle @[114053] @super-admin @functional", async () => {});
 });

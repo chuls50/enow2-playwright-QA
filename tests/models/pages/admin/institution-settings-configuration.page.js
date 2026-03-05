@@ -52,10 +52,15 @@ export class AdminInstitutionSettingsConfigurationPage extends BasePage {
     // Interactive Triage toggle
     this.interactiveTriageText = page.getByText("Interactive Triage");
     this.interactiveTriageToggle = page.locator("label").filter({ hasText: "Interactive Triage" }).getByTestId("switch-div");
+    this.interactiveTriageDescription = page.getByText("This option allows eNOW to interactively engage with Patients to triage");
+
+    // Canary Speech Toggle
+    this.canarySpeechText = page.getByText("Canary Speech").first();
+    this.canarySpeechToggle = page.locator("label").filter({ hasText: "Canary Speech" }).getByTestId("switch-div").first();
+    this.canarySpeechDescription = page.getByText("Enable Canary Speech to allow the system to analyze speech pattern");
 
     // Institution Selection Dropdown
     this.institutionDropdown = page.getByTestId("icon-ChevronDown").nth(1);
-    // this.codyTestInstitutionOption = page.getByTestId("custom-dropdown-item-Cody Test");
 
     // Success Messages
     this.successMessage = page.getByText("Success", { exact: true });

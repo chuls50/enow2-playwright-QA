@@ -82,7 +82,7 @@ Each guide includes:
 
 ### 📊 Test Coverage Overview
 
-✅ **22 test spec files** completed across multiple categories
+✅ **40 test spec files** completed across multiple categories
 
 ### Smoke Tests (1 spec)
 
@@ -90,7 +90,7 @@ Located in `tests/smoke/`
 
 - [auth-verification.spec.js](tests/smoke/auth-verification.spec.js) - Verifies authentication storage states
 
-### Unauthenticated Tests (5 specs)
+### Unauthenticated Tests (6 specs)
 
 Located in `tests/single-user-tests/unauthenticated/`
 
@@ -99,6 +99,18 @@ Located in `tests/single-user-tests/unauthenticated/`
 - [create-new-password.spec.js](tests/single-user-tests/unauthenticated/create-new-password.spec.js) - Password reset flow
 - [password.spec.js](tests/single-user-tests/unauthenticated/password.spec.js) - Password field validation
 - [device-id-access.spec.js](tests/single-user-tests/unauthenticated/device-id-access.spec.js) - Device ID authentication
+- [combined-roles-account-profile.spec.js](tests/single-user-tests/unauthenticated/combined-roles-account-profile.spec.js) - Combined role account creation
+
+### Admin Tests (6 specs)
+
+Located in `tests/single-user-tests/admin/`
+
+- [admin-my-account.spec.js](tests/single-user-tests/admin/admin-my-account.spec.js) - My Account tab functionality
+- [admin-institution-profile.spec.js](tests/single-user-tests/admin/admin-institution-profile.spec.js) - Institution profile management (part 1)
+- [admin-institution-profile-pt2.spec.js](tests/single-user-tests/admin/admin-institution-profile-pt2.spec.js) - Institution profile management (part 2)
+- [admin-reporting.spec.js](tests/single-user-tests/admin/admin-reporting.spec.js) - Data reporting features (part 1)
+- [admin-reporting-pt2-extra-fields.spec.js](tests/single-user-tests/admin/admin-reporting-pt2-extra-fields.spec.js) - Data reporting extra fields (part 2)
+- [admin-reporting-pt2-service-filter.spec.js](tests/single-user-tests/admin/admin-reporting-pt2-service-filter.spec.js) - Data reporting service filters (part 2)
 
 ### Provider Tests (8 specs)
 
@@ -130,19 +142,39 @@ Located in `tests/single-user-tests/device/`
 - [create-account-onboard-device-id.spec.js](tests/single-user-tests/device/create-account-onboard-device-id.spec.js) - Device account creation
 - [device-id-my-account-and-edit.spec.js](tests/single-user-tests/device/device-id-my-account-and-edit.spec.js) - Device account settings
 
+### Super Admin Tests (2 specs)
+
+Located in `tests/single-user-tests/super-admin/`
+
+- [admin-super-admin.spec.js](tests/single-user-tests/super-admin/admin-super-admin.spec.js) - Super admin account management
+- [admin-configuration-institution-language.spec.js](tests/single-user-tests/super-admin/admin-configuration-institution-language.spec.js) - Institution language configuration
+
+### Destructive Tests (9 specs)
+
+Located in `tests/destructive/`
+
+Tests that modify global application configuration. These run last, sequentially, to prevent interference with other tests.
+
+- [admin-configuration-settings.spec.js](tests/destructive/admin-configuration-settings.spec.js) - Configuration settings (part 1)
+- [admin-configuration-settings-pt2.spec.js](tests/destructive/admin-configuration-settings-pt2.spec.js) - Configuration settings (part 2)
+- [admin-configuration-settings-pt3.spec.js](tests/destructive/admin-configuration-settings-pt3.spec.js) - Configuration settings (part 3)
+- [admin-configuration-white-label.spec.js](tests/destructive/admin-configuration-white-label.spec.js) - White label configuration (part 1)
+- [admin-configuration-white-label-pt2.spec.js](tests/destructive/admin-configuration-white-label-pt2.spec.js) - White label configuration (part 2)
+- [define-insurance.spec.js](tests/destructive/define-insurance.spec.js) - Insurance configuration
+- [define-payments.spec.js](tests/destructive/define-payments.spec.js) - Payment configuration
+- [define-services.spec.js](tests/destructive/define-services.spec.js) - Services configuration (part 1)
+- [define-services-pt2.spec.js](tests/destructive/define-services-pt2.spec.js) - Services configuration (part 2)
+
 ### In Progress
 
 The following role folders are ready for test development:
 
-- `tests/single-user-tests/admin/` - Admin role tests
 - `tests/single-user-tests/coordinator/` - Coordinator role tests
-- `tests/single-user-tests/super-admin/` - Super admin role tests
 - `tests/single-user-tests/admin-coordinator/` - Combined admin-coordinator tests
 - `tests/single-user-tests/provider-admin/` - Combined provider-admin tests
 - `tests/single-user-tests/provider-coordinator/` - Combined provider-coordinator tests
 - `tests/single-user-tests/provider-admin-coordinator/` - Combined provider-admin-coordinator tests
 - `tests/multi-user-tests/` - Multi-user interaction tests
-- `tests/destructive/` - Global configuration-changing tests
 
 ## Test Execution Phases
 

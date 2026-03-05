@@ -1,6 +1,6 @@
 import { test, expect } from "@playwright/test";
-import { AdminInstitutionSettingsConfigurationPage } from "../../models/pages/admin/institution-settings-configuration.page.js";
-import { useRole, ROLES } from "../../utils/auth-helpers.js";
+import { AdminInstitutionSettingsConfigurationPage } from "../models/pages/admin/institution-settings-configuration.page.js";
+import { useRole, ROLES } from "../utils/auth-helpers.js";
 
 // Admin Configuration Settings pt2 - Total Tests 6 (including 4 skipped)
 

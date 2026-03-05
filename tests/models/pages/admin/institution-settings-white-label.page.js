@@ -6,7 +6,7 @@ import { fileURLToPath } from "url";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-export class InstitutionSettingsWhiteLabelPage extends BasePage {
+export class AdminInstitutionSettingsWhiteLabelPage extends BasePage {
   constructor(page) {
     super(page);
 

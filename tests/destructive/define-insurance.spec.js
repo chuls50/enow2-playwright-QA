@@ -1,6 +1,6 @@
 import { test, expect } from "@playwright/test";
-import { AdminInstitutionSettingsInsurancePage } from "../../models/pages/admin/institution-settings-insurance.page.js";
-import { useRole, ROLES } from "../../utils/auth-helpers.js";
+import { AdminInstitutionSettingsInsurancePage } from "../models/pages/admin/institution-settings-insurance.page.js";
+import { useRole, ROLES } from "../utils/auth-helpers.js";
 
 // Define Insurance - Total Tests 8 (including 1 skipped test)
 

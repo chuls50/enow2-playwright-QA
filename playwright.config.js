@@ -345,6 +345,7 @@ export default defineConfig({
       name: "destructive",
       testMatch: "**/destructive/**/*.spec.js",
       use: { ...desktopChromeConfig },
+      workers: 1, // Force single worker for destructive tests
       fullyParallel: false,
       dependencies: [...singleUserProjects, "multi-user-tests"],
     },
