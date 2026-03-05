@@ -25,11 +25,11 @@ export class UsersTablePage extends BasePage {
 
     // Table Elements
     this.table = page.getByTestId("table");
-    this.tableUsername = page.getByRole("cell", { name: "User Name" });
-    this.tableEmail = page.getByRole("cell", { name: "Email" });
-    this.tableAssignedRoles = page.getByRole("cell", { name: "Assigned Roles" });
-    this.tableStatus = page.getByRole("cell", { name: "Active?" });
-    this.tableLastUpdated = page.getByRole("cell", { name: "Last Updated" });
+    this.tableUsername = page.getByRole("columnheader", { name: "User Name" });
+    this.tableEmail = page.getByRole("columnheader", { name: "Email" });
+    this.tableAssignedRoles = page.getByRole("columnheader", { name: "Assigned Roles" });
+    this.tableStatus = page.getByRole("columnheader", { name: "Active?" });
+    this.tableLastUpdated = page.getByRole("columnheader", { name: "Last Updated" });
     this.tableSortByLastUpdated = page.getByTestId("sort-button-updated_at");
 
     // Add roles button, role options, and active toggle
@@ -57,7 +57,6 @@ export class UsersTablePage extends BasePage {
     this.inviteUsersInstitutionText = page.getByText("Institution", { exact: true });
     this.inviteUsersInstitutionDropdown = page.getByTestId("modal").getByTestId("custom-select-item-wrapper");
     this.inviteUsersInstitutionDropdownOptions = page.getByTestId("custom-dropdown");
-    this.inviteUsersInstitutionDropdownOptionCodyTest = page.getByTestId("custom-dropdown-item-Cody Test");
     this.inviteUsersRoleText = page.getByTestId("modal").getByText("Role");
     this.inviteUsersRoleDropdown = page.getByRole("textbox", { name: "Patient, Provider..." });
     this.inviteUsersRoleDropdownOptions = page.getByTestId("items-wrapper");
@@ -129,10 +128,7 @@ export class UsersTablePage extends BasePage {
    */
   async selectCreateDeviceIdInstitution(institutionName) {
     await this.createDeviceIdInstitutionDropdown.click();
-
-    // Use a dynamic locator based on the institution name
-    const institutionOption = this.page.getByTestId(`custom-dropdown-item-${institutionName}`);
-    await institutionOption.click();
+    await this.page.getByText(institutionName).last().click();
     await this.createDeviceIdInstitutionDropdown.click();
   }
 
@@ -150,10 +146,7 @@ export class UsersTablePage extends BasePage {
    */
   async selectInviteUserInstitution(institutionName) {
     await this.inviteUsersInstitutionDropdown.click();
-
-    // Use a dynamic locator based on the institution name
-    const institutionOption = this.page.getByTestId(`custom-dropdown-item-${institutionName}`);
-    await institutionOption.click();
+    await this.page.getByText(institutionName).last().click();
     await this.inviteUsersInstitutionDropdown.click();
   }
 
