@@ -48,8 +48,8 @@ export class DeviceMyAccountPage extends BasePage {
     this.modalZipCodeLabel = page.getByRole("dialog").getByText("Zip code");
     this.modalAddressLine1Label = page.getByRole("dialog").getByText("Address line 1");
     this.modalAddressLine2Label = page.getByRole("dialog").getByText("Address line 2");
-    this.modalCountryLabel = page.getByRole("dialog").getByText("Country");
-    this.modalStateLabel = page.getByRole("dialog").getByText("State");
+    this.modalCountryLabel = page.getByRole("dialog").getByText("Country").first();
+    this.modalStateLabel = page.getByRole("dialog").getByText("State").first();
     this.modalPhoneNumberLabel = page.getByRole("dialog").getByText("Phone number");
 
     // Hidden modal fields (should NOT be visible)

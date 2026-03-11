@@ -211,9 +211,9 @@ test.describe("Provider - English @regression", () => {
     // add license
     await page.getByRole("link", { name: "Plus Add license" }).click();
 
-    await page.getByTestId("custom-select-item-wrapper").nth(3).click();
+    await page.getByTestId("custom-select-item-wrapper").nth(5).click();
     await page.getByTestId("custom-dropdown-item-Albania").click();
-    await page.getByTestId("custom-select-item-wrapper").nth(4).click();
+    await page.getByTestId("custom-select-item-wrapper").nth(6).click();
     await page.getByTestId("custom-dropdown-item-Berat").click();
     await expect(page.getByText("CountryAlbania")).toBeVisible();
     await expect(page.getByText("StateBerat")).toBeVisible();

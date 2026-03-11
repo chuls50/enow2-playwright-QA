@@ -63,8 +63,8 @@ export class AdminMyAccountPage extends BasePage {
     this.editProfileFirstNameLabel = page.getByRole("dialog").getByText("First name");
     this.editProfileLastNameLabel = page.getByRole("dialog").getByText("Last name");
     this.editProfileLanguagesLabel = page.getByRole("dialog").getByText("Languages spoken");
-    this.editProfileCountryLabel = page.getByRole("dialog").getByText("Country");
-    this.editProfileStateLabel = page.getByRole("dialog").getByText("State");
+    this.editProfileCountryLabel = page.getByRole("dialog").getByText("Country").first();
+    this.editProfileStateLabel = page.getByRole("dialog").getByText("State").first();
     this.editProfileFirstNameInput = page.getByRole("textbox", { name: "First name" });
     this.editProfileLastNameInput = page.getByRole("textbox", { name: "Last name" });
     this.editProfilePhoneInput = page.getByRole("textbox", { name: "Phone number" });

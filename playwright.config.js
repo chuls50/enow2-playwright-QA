@@ -72,7 +72,7 @@ export default defineConfig({
   testIgnore: ["**/utils/**", "**/example.spec.js", "**/documentation-audit.spec.js", "**/appointment-workflow-audit.spec.js"], // Exclude utilities, example, and audit tests from normal execution
   fullyParallel: false, // Sequential execution within projects by default
   forbidOnly: !!process.env.CI,
-  retries: process.env.CI ? 1 : 1,
+  retries: process.env.CI ? 1 : 3,
   workers: 5, // 5 workers to run 15 authentication setup projects in parallel
   timeout: 120000, // Default timeout for each test
   expect: {

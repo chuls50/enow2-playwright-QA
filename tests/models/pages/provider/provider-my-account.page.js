@@ -72,10 +72,7 @@ export class MyAccountPage extends BasePage {
     this.editProfileDetailsState = page.getByText("State").nth(1);
     this.editProfileDetailsPhoneNumber = page.getByText("Phone number").first();
     this.editProfileDetailsPhoneNumberInput = page.getByRole("textbox", { name: "Phone number" });
-    this.editProfileDetailsPhoneNumberExtensionDropdown = page
-      .locator("div")
-      .filter({ hasText: /^US \(\+1\)$/ })
-      .getByRole("button");
+    this.editProfileDetailsPhoneNumberExtensionDropdown = page.getByRole("button", { name: "US (+1) ChevronDown" }).first();
     this.editProfileSaveButton = page.getByRole("button", { name: "Save changes" });
     this.editProfileCancelButton = page.getByRole("button", { name: "Cancel" });
     this.editProfileSuccessMessage = page.getByText("Profile updated successfully!");
