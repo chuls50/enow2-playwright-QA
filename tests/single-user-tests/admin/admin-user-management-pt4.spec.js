@@ -27,8 +27,11 @@ test.describe("Admin @regression", () => {
     await userTablePage.filterByRoleDropdownOptionDevice.click();
     await userTablePage.filterByRoleDropdown.click();
 
-    // "Add roles" button should NOT be visible for device roles
-    await expect(userTablePage.addRolesButton).not.toBeVisible();
+    // "Add roles" button should be disabled for users with Device role
+    await userTablePage.addRolesButton.click();
+    await expect(userTablePage.addRolesButtonProvider).not.toBeVisible();
+    await expect(userTablePage.addRolesButtonAdmin).not.toBeVisible();
+    await expect(userTablePage.addRolesButtonCoordinator).not.toBeVisible();
   });
 
   test('Verify "Add Roles" button is disabled for Users with all Roles @[117679] @admin @functional', async ({ page }) => {
